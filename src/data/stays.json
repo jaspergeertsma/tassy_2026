@@ -1,8 +1,8 @@
 [
   {
-    "id": "stay-1-campbell",
-    "name": "Haven on High",
-    "region": "Midlands",
+    "id": "stay-1",
+    "region": "Campbell town",
+    "name": "Haven on high",
     "location": "Campbell Town, TAS",
     "type": "Historic Home",
     "checkIn": "2026-12-18",
@@ -24,9 +24,9 @@
     ]
   },
   {
-    "id": "stay-3-cygnet",
+    "id": "stay-3",
+    "region": "Cygnet",
     "name": "The Barn",
-    "region": "Huon Valley",
     "location": "Cygnet, TAS",
     "type": "Converted Barn",
     "checkIn": "2026-12-24",
@@ -48,13 +48,13 @@
     ]
   },
   {
-    "id": "stay-5-arthur",
-    "name": "Arthur River Lodge",
+    "id": "stay-5",
     "region": "Northwest",
+    "name": "Arthur River Lodge",
     "location": "Arthur River, TAS",
     "type": "Wilderness Lodge",
     "checkIn": "2026-12-31",
-    "checkOut": "2027-01-06",
+    "checkOut": "2026-01-06",
     "days": 6,
     "coordinates": [
       -41.050,
