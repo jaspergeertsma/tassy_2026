@@ -3,33 +3,33 @@
     "direction": "outbound",
     "segments": [
       {
-        "from": "Amsterdam",
-        "to": "Tasmania",
-        "departLocal": "17:00",
-        "arriveLocal": "16:30",
+        "from": "AMS",
+        "to": "CAN",
+        "departLocal": "21:40",
+        "arriveLocal": "16:10",
         "airline": "China Southern",
-        "flightNo": "CZ...",
-        "duration": "24h",
+        "flightNo": "CZ308",
+        "duration": "11u 30m",
         "date": "2026-12-15"
       },
       {
-        "from": "Amsterdam",
-        "to": "Tasmania",
-        "departLocal": "17:00",
-        "arriveLocal": "16:30",
+        "from": "CAN",
+        "to": "MEL",
+        "departLocal": "21:00",
+        "arriveLocal": "09:45",
         "airline": "China Southern",
-        "flightNo": "CZ...",
-        "duration": "24h",
-        "date": "2026-12-17"
+        "flightNo": "CZ321",
+        "duration": "9u 45m",
+        "date": "2026-12-16"
       },
       {
-        "from": "Amsterdam",
-        "to": "Tasmania",
-        "departLocal": "17:00",
-        "arriveLocal": "16:30",
-        "airline": "China Southern",
-        "flightNo": "CZ...",
-        "duration": "24h",
+        "from": "MEL",
+        "to": "DPO",
+        "departLocal": "15:30",
+        "arriveLocal": "16:40",
+        "airline": "QantasLink",
+        "flightNo": "QF2057",
+        "duration": "1u 10m",
         "date": "2026-12-17"
       }
     ]
@@ -38,64 +38,34 @@
     "direction": "return",
     "segments": [
       {
-        "from": "Tasmania",
-        "to": "Amsterdam",
-        "departLocal": "10:00",
-        "arriveLocal": "20:00",
-        "airline": "China Southern",
-        "flightNo": "CZ...",
-        "duration": "24h",
-        "date": "2026-12-23"
+        "from": "DPO",
+        "to": "MEL",
+        "departLocal": "17:05",
+        "arriveLocal": "18:15",
+        "airline": "QantasLink",
+        "flightNo": "QF2058",
+        "duration": "1u 10m",
+        "date": "2027-01-04"
       },
       {
-        "from": "Tasmania",
-        "to": "Amsterdam",
-        "departLocal": "10:00",
-        "arriveLocal": "20:00",
+        "from": "MEL",
+        "to": "CAN",
+        "departLocal": "23:30",
+        "arriveLocal": "05:50",
         "airline": "China Southern",
-        "flightNo": "CZ...",
-        "duration": "24h",
-        "date": "2026-12-23"
+        "flightNo": "CZ344",
+        "duration": "9u 20m",
+        "date": "2027-01-04"
       },
       {
-        "from": "Tasmania",
-        "to": "Amsterdam",
-        "departLocal": "10:00",
-        "arriveLocal": "20:00",
+        "from": "CAN",
+        "to": "AMS",
+        "departLocal": "13:00",
+        "arriveLocal": "18:35",
         "airline": "China Southern",
-        "flightNo": "CZ...",
-        "duration": "24h",
-        "date": "2026-12-29"
-      },
-      {
-        "from": "Tasmania",
-        "to": "Amsterdam",
-        "departLocal": "10:00",
-        "arriveLocal": "20:00",
-        "airline": "China Southern",
-        "flightNo": "CZ...",
-        "duration": "24h",
-        "date": "2026-12-30"
-      },
-      {
-        "from": "Tasmania",
-        "to": "Amsterdam",
-        "departLocal": "10:00",
-        "arriveLocal": "20:00",
-        "airline": "China Southern",
-        "flightNo": "CZ...",
-        "duration": "24h",
-        "date": "2026-01-04"
-      },
-      {
-        "from": "Tasmania",
-        "to": "Amsterdam",
-        "departLocal": "10:00",
-        "arriveLocal": "20:00",
-        "airline": "China Southern",
-        "flightNo": "CZ...",
-        "duration": "24h",
-        "date": "2026-01-05"
+        "flightNo": "CZ307",
+        "duration": "12u 35m",
+        "date": "2027-01-05"
       }
     ]
   }
