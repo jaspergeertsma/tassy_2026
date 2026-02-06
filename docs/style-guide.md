@@ -1,52 +1,57 @@
 
-# Brand Style Guide: Tassy 2026 (WCWR Inspired)
+# Tassy 2026 Style Guide - Dark Industrial Edition
 
-This document outlines the design system derived from the "West Coast Wilderness Railway" aesthetic. 
-The goal is to evoke a premium heritage feeling combined with rugged wilderness adventure.
+This design system is inspired by the West Coast Wilderness Railway (WCWR) "Dark Industrial" aesthetic.
+It focuses on ruggedness, bold typography, and a cinematic/poster feel.
 
-## 1. Color Palette
+## Colors
 
-The palette is derived from the Tasmanian landscape: deep rainforest greens, railway iron rust, steam engine charcoal, and heritage paper tones.
+### Backgrounds
+- **Primary Background**: `#1F1D1B` (Warm Charcoal/Black)
+- **Card Background**: `#2A2624` (Slightly lighter charcoal)
+- **Overlay**: `rgba(0,0,0,0.4)` to `rgba(0,0,0,0.8)`
 
-| Token | Hex | Usage |
-|-------|-----|-------|
-| `--color-wilderness` | `#1B3B36` | Primary Brand Color (Deep Green) |
-| `--color-wilderness-light` | `#2D564F` | Hover states, secondary accents |
-| `--color-heritage-rust` | `#C06C47` | Primary CTA, Accents, Highlights (Copper/Rust) |
-| `--color-steam` | `#1A1A1A` | Main Text, Headings (Charcoal) |
-| `--color-paper` | `#F8F6F2` | Page Background (Warm off-white) |
-| `--color-paper-dark` | `#EBE7DE` | Secondary Backgrounds, Cards |
-| `--color-stone` | `#8C8C8C` | Muted Text, Borders |
-| `--color-white` | `#FFFFFF` | Card Backgrounds, High Contrast Text |
+### Typography
+- **Primary Text**: `#EAE6DD` (Cream / Off-white)
+- **Muted Text**: `#9E9990` (Stone / Grey)
 
-## 2. Typography
+### Accents
+- **Mustard Gold**: `#D4A03D` (Primary Action / Highlight)
+- **Heritage Rust**: `#BE5A38` (Secondary Action / Warning)
+- **Industrial Blue**: `#6B9AC4` (Info / Ocean)
+- **Sage Green**: `#C5D1C3` (Nature / Calm)
 
-We use a strong serif for headings to convey history and a clean geometric sans-serif for modern readability.
+## Typography
 
-*   **Headings**: `Playfair Display` (Serif)
-    *   Usage: Editorial, elegant, historical.
-    *   Weights: 700 (Bold), 400 (Regular/Italic).
-*   **Body**: `Lato` (Sans-serif)
-    *   Usage: UI elements, long-form text.
-    *   Weights: 400, 700.
-*   **Utility**: `JetBrains Mono`
-    *   Usage: Flight numbers, dates, coordinates.
+### Headers
+- **Font**: `Barlow Condensed` (Google Fonts)
+- **Weights**: 600 (Bold), 800 (Extra Bold)
+- **Style**: Uppercase, Tight Letter Spacing, Blocky.
 
-## 3. UI Patterns & Shape Language
+### Body
+- **Font**: `Lato` (Google Fonts)
+- **Weights**: 300 (Light), 400 (Regular)
+- **Style**: Clean, modern, high legibility.
 
-*   **Border Radius**: `4px` (Slightly rounded, mostly structured/industrial).
-*   **Shadows**: Gentle, diffused shadows to lift cards from the "paper" background.
-    *   `--shadow-card`: `0 2px 8px rgba(0,0,0,0.08)`
-    *   `--shadow-hover`: `0 8px 24px rgba(0,0,0,0.12)`
-*   **Buttons**:
-    *   **Primary**: Solid Rust background, White text, Uppercase label tracking (letter-spacing).
-    *   **Secondary**: Transparent background, 1px Solid Border (Wilderness color), Dark text.
-*   **Spacing**:
-    *   Generous whitespace.
-    *   "Block" layout: clearly defined sections with padding `4rem` to `8rem`.
+### Utility / Data
+- **Font**: `JetBrains Mono` (Google Fonts)
+- **Use**: Dates, Prices, Coordinates, Flight Numbers.
 
-## 4. Components
+## UI Components
 
-*   **Cards**: White background on Paper/Stone surface. Subtle border (`1px solid #E5E5E5`). Content padding `2rem`.
-*   **Navigation**: Sticky, White/Paper background with distinct border-bottom. Logo prominently serif.
-*   **Hero**: Full-bleed images. Gradient overlays (dark at bottom) to ensure text legibility.
+### Buttons
+- **Primary**: Outline Gold (`border: 2px solid #D4A03D`), Text Gold. Hover: Solid Gold, Text Dark.
+- **Secondary**: Text Underline (`border-bottom: 2px solid`).
+
+### Cards
+- **Poster Style**: Dark background, large image area (often with sepia/contrast filter), bold uppercase title.
+- **Hover Effect**: Lift (`translateY(-5px)`) + Border Color Highlight + Image Saturation.
+
+### Graphics
+- **Lines**: `1px` or `2px` solid lines.
+- **Dashed Lines**: Used for timelines or separators.
+- **Texture**: Subtle noise/grain overlays are encouraged.
+
+## Imagery
+- **Style**: Moody, high contrast, wilderness, railway, industrial details.
+- **Filters**: Sepia tone + High Contrast on idle. Full color on hover.
