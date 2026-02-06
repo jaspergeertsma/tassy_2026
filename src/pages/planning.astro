@@ -80,7 +80,7 @@ const days = itineraryData;
   .layout-grid {
     display: grid;
     gap: var(--space-lg);
-    grid-template-columns: 240px 1fr;
+    grid-template-columns: 340px 1fr; /* Widened by 100px */
   }
 
   .toc-nav {
@@ -89,6 +89,12 @@ const days = itineraryData;
     background-color: var(--color-bg-card);
     padding: var(--space-md);
     border: 1px solid rgba(255,255,255,0.05);
+  }
+  
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
   
   .toc-title {
