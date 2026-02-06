@@ -10,25 +10,33 @@ const { day } = Astro.props;
 
 const dateObj = new Date(day.date);
 const dayName = dateObj.toLocaleDateString('nl-NL', { weekday: 'long' });
-const dayNum = dateObj.getDate();
-const month = dateObj.toLocaleDateString('nl-NL', { month: 'short' }).toUpperCase();
+const dayDate = dateObj.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long' });
+
+const hasImages = day.images && day.images.length > 0;
 ---
 
-<article class="timeline-day scroll-reveal" id={`day-${day.dayNumber}`}>
-  <div class="calendar-badge">
-    <span class="bad-month">{month}</span>
-    <span class="bad-day">{dayNum}</span>
-    <span class="bad-weekday">{dayName}</span>
+<div class={`day-card scroll-reveal ${hasImages ? 'has-images' : ''}`} data-region={day.region}>
+  <div class="date-col">
+    <span class="day-number">DAG {day.dayNumber}</span>
+    <span class="day-name">{dayName}</span>
+    <span class="day-date">{dayDate}</span>
   </div>
+  
+  <div class="content-col">
+    <div class="header">
+      <h3>{day.title}</h3>
+      <span class="region-badge">{day.region}</span>
+    </div>
 
-  <div class="day-content">
-    <header class="day-header">
-      <div class="header-main">
-        <span class="day-counter">Dag {String(day.dayNumber).padStart(2, '0')}</span>
-        <h3 class="day-title">{day.title}</h3>
+    {hasImages && (
+      <div class="day-images">
+        {day.images.map(img => (
+          <div class="image-thumb">
+            <img src={img} alt={day.title} loading="lazy" />
+          </div>
+        ))}
       </div>
-      <div class="region-pill">{day.region}</div>
-    </header>
+    )}
 
     <div class="day-details">
       {day.notes && (
@@ -198,6 +206,27 @@ const month = dateObj.toLocaleDateString('nl-NL', { month: 'short' }).toUpperCas
   .drive-label { color: var(--color-accent-rust); margin-right: 0.5rem; }
   .drive-val { color: var(--color-text-cream); }
   .sep { margin: 0 0.5rem; opacity: 0.5; }
+
+  .day-images {
+    display: flex;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  .image-thumb {
+    width: 60px;
+    height: 60px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .image-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   @media (max-width: 600px) {
     .timeline-day { grid-template-columns: 1fr; }
