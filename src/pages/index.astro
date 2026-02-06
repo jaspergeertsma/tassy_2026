@@ -1,174 +1,218 @@
 
 ---
 import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content'; // Not used yet
 
-const highlights = [
-  { title: "Wildlife", desc: "Ontmoet de Tasmaanse Duivel, wombats en wallabies in het wild.", icon: "🦘" },
-  { title: "Ruige Kust", desc: "Van Wineglass Bay tot de Bay of Fires: parelwitte stranden en oranje rotsen.", icon: "🌊" },
-  { title: "Hikes", desc: "Wandel door oeroude regenwouden en beklim Cradle Mountain.", icon: "🥾" },
-  { title: "Historie", desc: "Ontdek het koloniale verleden in Port Arthur en Hobart.", icon: "🏛️" },
+const blocks = [
+  {
+    title: "De Planning",
+    subtitle: "Route & Schema",
+    desc: "Een tocht van drie weken langs de hoogtepunten van het eiland. Van dag tot dag uitgestippeld.",
+    link: "/planning",
+    image: "https://images.unsplash.com/photo-1549608276-5786777e6587?q=80&w=2070&auto=format&fit=crop", // Map/Compass/Route feel
+    cta: "Bekijk Schema"
+  },
+  {
+    title: "Verblijven",
+    subtitle: "Overnachten",
+    desc: "Unieke locaties in de wildernis. Van historische cottages tot moderne cabins met uitzicht.",
+    link: "/stays",
+    image: "https://images.unsplash.com/photo-1449156493391-d2cfa28e468b?q=80&w=2000&auto=format&fit=crop", // Cabin/Cozy
+    cta: "Ontdek Plekken"
+  },
+  {
+    title: "Vliegreis",
+    subtitle: "Logistiek",
+    desc: "Vluchtnummers, tijden en overstappen. Alles wat je moet weten voor vertrek.",
+    link: "/flights",
+    image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074&auto=format&fit=crop", // Wing/Clouds
+    cta: "Vluchtinfo"
+  }
 ];
 ---
 
-<Layout title="Tasmanië 2026 - Rondreis">
+<Layout title="Tasmanië 2026 | The Wilderness Journey">
   <main>
-    <section class="hero">
+    <section class="hero-fullscreen">
+      <div class="hero-overlay"></div>
       <div class="hero-content container">
-        <h1>Tasmanië <span class="accent">2026</span></h1>
-        <p class="subtitle">Een reis door de wildernis van het zuiden.</p>
-        <div class="cta-group">
-          <a href="/planning" class="btn btn-primary">Bekijk Planning</a>
-          <a href="/stays" class="btn btn-secondary">Verblijven</a>
+        <span class="hero-eyebrow scroll-reveal">15 Dec 2026 — 08 Jan 2027</span>
+        <h1 class="hero-title scroll-reveal">The Wilderness Journey</h1>
+        <p class="hero-lead scroll-reveal">
+          Een ontdekkingsreis door het ruige hart van Tasmanië. 
+          Oeroude regenwouden, verlaten mijndorpen en de ongetemde oceaan.
+        </p>
+        <div class="hero-actions scroll-reveal">
+          <a href="/planning" class="btn btn-primary">Start de Reis</a>
         </div>
       </div>
-      <div class="hero-bg">
-        <!-- Placeholder for hero image -->
-        <div class="overlay"></div>
-      </div>
     </section>
 
-    <section class="intro container">
-      <h2>Het Avontuur Wacht</h2>
-      <p>
-        Drie weken lang dompelen we ons onder in de ongerepte natuur van Tasmanië. 
-        Van de bruisende markten in Hobart tot de stilte van de Tarkine Wilderness. 
-        Dit platform is onze gids: planning, slaapplekken en vluchten op één plek.
+    <section class="intro-block container text-center">
+      <h2 class="section-title">Welkom in Tasmanië</h2>
+      <p class="section-text">
+        Dit is het digitale logboek voor onze rondreis. Hier vind je alle details
+        over de route, de overnachtingen en praktische zaken. 
+        Geïnspireerd door de pioniers van weleer.
       </p>
+      <div class="divider-icon">✦</div>
     </section>
 
-    <section class="highlights container">
-      <div class="grid">
-        {highlights.map(h => (
-          <div class="card">
-            <div class="icon">{h.icon}</div>
-            <h3>{h.title}</h3>
-            <p>{h.desc}</p>
+    <section class="nav-blocks container">
+      {blocks.map(block => (
+        <article class="nav-card scroll-reveal">
+          <div class="card-image">
+            <img src={block.image} alt={block.title} loading="lazy" />
           </div>
-        ))}
-      </div>
+          <div class="card-body">
+            <span class="card-subtitle">{block.subtitle}</span>
+            <h3 class="card-title">{block.title}</h3>
+            <p class="card-text">{block.desc}</p>
+            <a href={block.link} class="btn-text">{block.cta} &rarr;</a>
+          </div>
+        </article>
+      ))}
     </section>
   </main>
 </Layout>
 
 <style>
-  .hero {
+  /* Hero */
+  .hero-fullscreen {
     position: relative;
-    height: 80vh;
+    height: 90vh;
     min-height: 600px;
     display: flex;
     align-items: center;
-    color: white;
-    overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background-image: url('https://images.unsplash.com/photo-1510019623630-6750438cf54f?q=80&w=2072&auto=format&fit=crop'); /* Placeholder */
+    background-image: url('https://images.unsplash.com/photo-1543292723-863ac340d869?q=80&w=2070&auto=format&fit=crop'); /* Misty Train/Forest vibe */
     background-size: cover;
     background-position: center;
+    color: var(--color-white);
+    overflow: hidden;
   }
-  .overlay {
+
+  .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+    background: linear-gradient(to bottom, rgba(27, 59, 54, 0.3), rgba(27, 59, 54, 0.8));
+    z-index: 1;
   }
+
   .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     text-align: center;
-    width: 100%;
+    max-width: 800px; /* Constrain width */
+    margin: 0 auto;
   }
-  h1 {
-    font-size: clamp(3rem, 10vw, 6rem);
-    margin-bottom: var(--space-xs);
-    letter-spacing: -2px;
-  }
-  .accent {
-    color: var(--color-sandstone);
-    font-style: italic;
-  }
-  .subtitle {
-    font-size: 1.25rem;
-    margin-bottom: var(--space-md);
-    opacity: 0.9;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .cta-group {
-    display: flex;
-    gap: var(--space-sm);
-    justify-content: center;
-  }
-  .btn {
-    padding: 0.75rem 1.5rem;
-    border-radius: var(--radius-md);
-    font-weight: 600;
+
+  .hero-eyebrow {
+    display: block;
+    font-size: 0.9rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-  }
-  .btn-primary {
-    background: var(--color-ocean);
-    color: white;
-  }
-  .btn-secondary {
-    background: rgba(255,255,255,0.2);
-    backdrop-filter: blur(5px);
-    color: white;
-    border: 1px solid rgba(255,255,255,0.4);
+    letter-spacing: 0.2em;
+    color: var(--color-heritage-rust);
+    margin-bottom: var(--space-sm);
+    font-weight: 700;
   }
 
-  .intro {
-    padding: var(--space-xl) var(--space-sm);
-    text-align: center;
+  .hero-title {
+    font-size: clamp(3rem, 8vw, 5rem);
+    color: var(--color-white);
+    margin-bottom: var(--space-md);
+    text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    line-height: 1.1;
   }
-  .intro p {
+
+  .hero-lead {
     font-size: 1.25rem;
-    line-height: 1.8;
-    color: var(--color-text-light);
-    max-width: 800px;
-    margin: var(--space-md) auto 0;
+    line-height: 1.6;
+    margin-bottom: var(--space-lg);
+    opacity: 0.9;
+    font-weight: 300;
   }
 
-  .highlights {
+  /* Intro */
+  .intro-block {
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .section-text {
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .divider-icon {
+    margin-top: var(--space-md);
+    font-size: 1.5rem;
+    color: var(--color-heritage-rust);
+  }
+
+  /* Nav Blocks */
+  .nav-blocks {
     padding-bottom: var(--space-xl);
-  }
-  .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--space-md);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
   }
-  .card {
-    background: white;
-    padding: var(--space-md);
+
+  .nav-card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-    text-align: center;
-    transition: transform 0.2s;
-    border: 1px solid var(--color-mist);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-  .card:hover {
+
+  .nav-card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--color-ocean-light);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--color-heritage-rust);
   }
-  .icon {
-    font-size: 2.5rem;
+
+  .card-image {
+    height: 240px;
+    overflow: hidden;
+    background-color: var(--color-paper-dark);
+  }
+  
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .nav-card:hover .card-image img {
+    transform: scale(1.05);
+  }
+
+  .card-body {
+    padding: var(--space-md);
+    text-align: center;
+  }
+
+  .card-subtitle {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-stone);
+    margin-bottom: var(--space-xs);
+    font-weight: 700;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+    color: var(--color-wilderness);
     margin-bottom: var(--space-sm);
   }
-  h3 {
-    margin-bottom: var(--space-xs);
-    color: var(--color-forest);
-  }
-  .card p {
-    color: var(--color-text-light);
+
+  .card-text {
     font-size: 0.95rem;
+    color: var(--color-text-light);
+    margin-bottom: var(--space-md);
+    line-height: 1.6;
   }
 </style>

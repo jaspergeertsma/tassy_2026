@@ -8,121 +8,211 @@ interface Props {
 
 const { day } = Astro.props;
 
-// Date formatting
+// Date Setup
 const dateObj = new Date(day.date);
-const dayName = dateObj.toLocaleDateString('nl-NL', { weekday: 'short' });
-const dateFormatted = dateObj.toLocaleDateString('nl-NL', { day: 'numeric', month: 'short' });
+const dayName = dateObj.toLocaleDateString('nl-NL', { weekday: 'long' });
+const dayNum = dateObj.getDate();
+const month = dateObj.toLocaleDateString('nl-NL', { month: 'short' }).toUpperCase();
 ---
 
-<article class="day-card" id={`day-${day.dayNumber}`}>
-  <div class="date-col">
-    <span class="day-name">{dayName}</span>
-    <span class="day-num">{dateFormatted}</span>
+<article class="timeline-day scroll-reveal" id={`day-${day.dayNumber}`}>
+  <div class="calendar-badge">
+    <span class="bad-month">{month}</span>
+    <span class="bad-day">{dayNum}</span>
+    <span class="bad-weekday">{dayName}</span>
   </div>
-  <div class="content-col">
-    <header>
-      <h3>Dag {day.dayNumber}: {day.title}</h3>
-      <span class="region-badge">{day.region}</span>
-    </header>
-    
-    <div class="details">
-       {day.notes && <p class="notes">{day.notes}</p>}
-       
-       {day.activities.length > 0 && (
-         <ul class="activities">
-           {day.activities.map(act => <li>{act}</li>)}
-         </ul>
-       )}
 
-       {/* Drive info if available (mocked/parsed) */}
-       {/* <div class="drive-info">🚗 2u 30m • 145km</div> */}
+  <div class="day-content">
+    <header class="day-header">
+      <div class="header-main">
+        <span class="day-counter">Dag {String(day.dayNumber).padStart(2, '0')}</span>
+        <h3 class="day-title">{day.title}</h3>
+      </div>
+      <div class="region-pill">{day.region}</div>
+    </header>
+
+    <div class="day-details">
+      {day.notes && (
+        <p class="description">{day.notes}</p>
+      )}
+
+      {day.activities.length > 0 && (
+        <div class="activities-block">
+          <h4 class="section-label">Highlights</h4>
+          <ul class="activities-list">
+            {day.activities.map(act => (
+              <li>
+                <span class="bullet">•</span>
+                {act}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {day.drive && (
+        <div class="drive-info">
+          <span class="icon">🚐</span>
+          <span>{day.drive.km} km</span>
+          <span class="sep">/</span>
+          <span>{day.drive.time}</span>
+        </div>
+      )}
     </div>
   </div>
 </article>
 
 <style>
-  .day-card {
-    display: flex;
+  .timeline-day {
+    display: grid;
+    grid-template-columns: 80px 1fr; /* Fixed calendar width */
     gap: var(--space-md);
     padding: var(--space-md);
-    background: white;
+    background-color: var(--color-white);
     border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
     margin-bottom: var(--space-md);
-    border-left: 4px solid var(--color-ocean);
-    transition: transform 0.2s, box-shadow 0.2s;
-    scroll-margin-top: 100px;
+    border: 1px solid var(--color-border);
+    transition: all 0.3s ease;
+    scroll-margin-top: calc(var(--header-height) + 2rem);
   }
-  .day-card:hover {
+
+  .timeline-day:hover {
+    border-color: var(--color-wilderness-light);
+    box-shadow: var(--shadow-card);
     transform: translateX(4px);
-    box-shadow: var(--shadow-md);
   }
-  
-  .date-col {
+
+  /* Calendar Badge */
+  .calendar-badge {
+    background-color: var(--color-paper-dark);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-width: 60px;
-    text-align: center;
-    color: var(--color-text-light);
-    font-family: var(--font-mono);
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm) 0.5rem;
+    height: fit-content;
+    color: var(--color-wilderness);
+    border: 1px solid var(--color-border);
   }
-  .day-name {
+
+  .bad-month {
+    font-size: 0.7rem;
     font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+  }
+
+  .bad-day {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+    color: var(--color-heritage-rust);
+  }
+
+  .bad-weekday {
+    font-size: 0.75rem;
     text-transform: uppercase;
-    font-size: 0.8rem;
-  }
-  .day-num {
-    font-size: 1.2rem;
-    font-weight: 400;
+    color: var(--color-stone);
+    font-weight: 500;
   }
 
-  .content-col {
-    flex: 1;
+
+  /* Content */
+  .day-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 
-  header {
+  .day-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: var(--space-xs);
-  }
-  
-  h3 {
-    font-family: var(--font-body); /* More readable for list */
-    font-weight: 600;
-    font-size: 1.1rem;
-    color: var(--color-forest-dark);
-    margin: 0;
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px dashed var(--color-border);
   }
 
-  .region-badge {
-    background: var(--color-mist);
-    color: var(--color-text-light);
-    padding: 0.2rem 0.5rem;
-    border-radius: 999px;
+  .day-counter {
+    display: block;
+    font-family: var(--font-mono);
     font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    white-space: nowrap;
-    margin-left: var(--space-xs);
-  }
-
-  .notes {
-    color: var(--color-text-main);
-    font-size: 0.95rem;
-    line-height: 1.5;
-    margin-bottom: var(--space-xs);
-  }
-
-  .activities {
-    padding-left: 1.2rem;
-    margin-top: var(--space-xs);
-    color: var(--color-forest);
-    font-size: 0.9rem;
-  }
-  .activities li {
+    color: var(--color-heritage-rust);
     margin-bottom: 0.25rem;
+    letter-spacing: 0.1em;
+  }
+
+  .day-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-steam);
+    margin: 0;
+    line-height: 1.2;
+  }
+  
+  .region-pill {
+    background-color: var(--color-wilderness);
+    color: var(--color-white);
+    padding: 0.25rem 0.75rem;
+    border-radius: 99px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+
+  .description {
+    font-size: 1rem;
+    color: var(--color-text-main);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-light);
+    margin-bottom: var(--space-xs);
+    font-family: var(--font-body);
+  }
+
+  .activities-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .activities-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--color-wilderness-light);
+  }
+
+  .bullet {
+    color: var(--color-heritage-rust);
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+    line-height: 1rem;
+  }
+
+  @media (max-width: 600px) {
+    .timeline-day {
+      grid-template-columns: 1fr;
+    }
+    .calendar-badge {
+      flex-direction: row;
+      gap: 0.5rem;
+      align-items: baseline;
+      padding: 0.5rem var(--space-md);
+    }
+    .bad-day { font-size: 1.5rem; }
   }
 </style>

@@ -8,22 +8,32 @@ import type { Flight } from '../types';
 const flights: Flight[] = flightsData as Flight[];
 ---
 
-<Layout title="Tasmanië 2026 - Vliegreis">
+<Layout title="Vliegreis | Tasmanië 2026">
   <main class="flights-page">
-    <div class="container container-flights">
-      <h1>Vliegreis</h1>
-      
+    <div class="header-section text-center">
+      <span class="eyebrow">De Reis</span>
+      <h1>Vluchtinformatie</h1>
+      <p class="intro">24 uur, 17.000 kilometer. De tocht naar de andere kant van de wereld.</p>
+    </div>
+
+    <div class="timeline-container container">
       {flights.length > 0 ? flights.map((trip) => (
-        <section class="trip-section">
-          <h2>{trip.direction === 'outbound' ? 'Heenreis' : 'Terugreis'}</h2>
-          <div class="flight-timeline">
+        <section class="trip-block scroll-reveal">
+          <header class="trip-header">
+            <h2 class="trip-title">{trip.direction === 'outbound' ? 'Heenreis (AMS → TAS)' : 'Terugreis (TAS → AMS)'}</h2>
+            <div class="divider"></div>
+          </header>
+          
+          <div class="segments-list">
             {trip.segments.map((segment, index) => (
               <FlightSegment segment={segment} isLast={index === trip.segments.length - 1} />
             ))}
           </div>
         </section>
       )) : (
-        <p class="empty-state">Geen vluchtinformatie gevonden. Controleer de data.</p>
+         <div class="empty-state">
+           <p>Nog geen vluchten bekend.</p>
+         </div>
       )}
     </div>
   </main>
@@ -31,48 +41,72 @@ const flights: Flight[] = flightsData as Flight[];
 
 <style>
   .flights-page {
-    background: var(--color-mist);
+    background-color: var(--color-paper);
     min-height: 100vh;
-    padding: var(--space-xl) 0;
-  }
-  
-  h1 {
-    text-align: center;
-    margin-bottom: var(--space-lg);
-    color: var(--color-ocean);
+    padding-bottom: var(--space-xl);
   }
 
-  .container-flights {
+  .header-section {
+    padding: var(--space-lg) var(--space-md);
+    background-color: var(--color-paper-dark);
+    margin-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .eyebrow {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-heritage-rust);
+    font-weight: 700;
+    display: block;
+    margin-bottom: var(--space-xs);
+  }
+
+  .intro {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--color-wilderness-light);
+    font-style: italic;
+  }
+
+  .timeline-container {
     max-width: 800px;
     margin: 0 auto;
   }
 
-  .trip-section {
-    background: white;
+  .trip-block {
+    background-color: var(--color-white);
     padding: var(--space-lg);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
+    border-radius: var(--radius-lg); /** WCWR style might use less radius, sticking to guide 4px? Guide says 4px/8px. */
+    box-shadow: var(--shadow-card);
+    margin-bottom: var(--space-xl);
+    border: 1px solid var(--color-border);
+  }
+
+  .trip-header {
     margin-bottom: var(--space-lg);
-    position: relative;
-    border: 1px solid var(--color-mist);
+    text-align: center;
   }
 
-  h2 {
-    margin-bottom: var(--space-md);
-    color: var(--color-forest);
-    font-size: 1.5rem;
-    border-bottom: 2px solid var(--color-sandstone);
-    display: inline-block;
-    padding-bottom: var(--space-xs);
+  .trip-title {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    color: var(--color-wilderness);
+    margin-bottom: var(--space-sm);
   }
 
-  .flight-timeline {
-    position: relative;
-    z-index: 1;
+  .divider {
+    height: 3px;
+    width: 60px;
+    background-color: var(--color-heritage-rust);
+    margin: 0 auto;
   }
   
   .empty-state {
     text-align: center;
-    color: var(--color-text-light);
+    padding: var(--space-xl);
+    color: var(--color-stone);
+    border: 2px dashed var(--color-border);
   }
 </style>

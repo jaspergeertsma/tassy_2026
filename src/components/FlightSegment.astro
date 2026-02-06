@@ -10,144 +10,168 @@ interface Props {
 const { segment, isLast } = Astro.props;
 ---
 
-<div class="segment">
+<div class="segment scroll-reveal">
   <div class="time-col">
-    <span class="time">{segment.departLocal}</span>
-    <span class="date">{new Date(segment.date).toLocaleDateString('nl-NL', { day: 'numeric', month: 'short' })}</span>
+    <div class="time-block">
+      <span class="time">{segment.departLocal}</span>
+      <span class="location-code">{segment.from}</span>
+    </div>
+    
+    <div class="duration-line">
+       <span class="duration-text">{segment.duration}</span>
+    </div>
+
+    <div class="time-block arrival">
+      <span class="time">{segment.arriveLocal}</span>
+      <span class="location-code">{segment.to}</span>
+    </div>
   </div>
   
-  <div class="line-col">
+  <div class="graphic-col">
     <div class="dot departing"></div>
-    <div class="line"></div>
-    {isLast && <div class="dot arriving"></div>}
+    <div class="path-line"></div>
+    <div class="dot arriving"></div>
   </div>
 
-  <div class="info-col">
-    <div class="flight-card">
-      <header>
-        <span class="airport-code">{segment.from}</span>
-        <span class="arrow">&rarr;</span>
-        <span class="airport-code">{segment.to}</span>
-      </header>
-      <div class="details">
-        <span class="airline">{segment.airline}</span>
-        <span class="flight-no">{segment.flightNo}</span>
-        <span class="duration">{segment.duration}</span>
-      </div>
-      <div class="arrival-time">
-        <span>Aankomst: {segment.arriveLocal}</span>
-      </div>
+  <div class="info-card">
+    <div class="card-header">
+       <span class="airline">{segment.airline}</span>
+       <span class="flight-no">{segment.flightNo}</span>
+    </div>
+    <div class="card-details">
+       <div class="detail-row">
+         <span class="label">Datum</span>
+         <span class="value">{new Date(segment.date).toLocaleDateString()}</span>
+       </div>
     </div>
   </div>
 </div>
 
 <style>
   .segment {
-    display: flex;
+    display: grid;
+    grid-template-columns: 120px 24px 1fr;
     gap: var(--space-md);
+    margin-bottom: var(--space-lg);
     position: relative;
-    padding-bottom: var(--space-lg);
   }
   
-  .segment:last-child {
-    padding-bottom: 0;
-  }
-  .segment:last-child .line {
-    display: none;
-  }
-
+  /* Time Column */
   .time-col {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    min-width: 80px;
+    justify-content: space-between;
     text-align: right;
-    padding-top: 0.25rem;
-  }
-  .time {
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: var(--color-charcoal);
-  }
-  .date {
-    font-size: 0.85rem;
-    color: var(--color-text-light);
+    padding: var(--space-xs) 0;
+    font-family: var(--font-mono);
   }
 
-  .line-col {
+  .time {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-wilderness);
+  }
+
+  .location-code {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--color-stone);
+    margin-top: 0.25rem;
+  }
+  
+  .duration-text {
+    font-size: 0.75rem;
+    color: var(--color-heritage-rust);
+    font-weight: 500;
+  }
+  
+  /* Graphic Column */
+  .graphic-col {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
-    width: 20px;
   }
+  
   .dot {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
-    background: var(--color-ocean);
+    background-color: var(--color-paper);
+    border: 3px solid var(--color-wilderness);
     z-index: 2;
-    border: 2px solid white;
-    box-shadow: 0 0 0 2px var(--color-mist);
   }
-  .dot.arriving {
-    position: absolute;
-    bottom: 0;
-    background: var(--color-forest);
-  }
-  .line {
-    flex: 1;
+  
+  .path-line {
+    flex-grow: 1;
     width: 2px;
-    background: var(--color-mist);
+    background-color: var(--color-wilderness-light);
     margin: 4px 0;
-    transform-origin: top;
-    animation: growLine 1.5s ease-out forwards;
-  }
-  
-  @keyframes growLine {
-    from { transform: scaleY(0); }
-    to { transform: scaleY(1); }
+    opacity: 0.3;
   }
 
-  .info-col {
-    flex: 1;
-    padding-bottom: var(--space-md);
-  }
-
-  .flight-card {
-    background: white;
+  /* Info Card */
+  .info-card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
     padding: var(--space-md);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--color-mist);
-  }
-
-  header {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    margin-bottom: var(--space-xs);
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--color-forest-dark);
+    box-shadow: var(--shadow-card);
+    transition: transform 0.3s ease;
   }
   
-  .arrow {
-    color: var(--color-text-light);
-    font-size: 1rem;
+  .info-card:hover {
+    transform: translateX(4px);
+    border-color: var(--color-heritage-rust);
   }
 
-  .details {
+  .card-header {
     display: flex;
-    gap: var(--space-md);
-    color: var(--color-text-light);
-    font-size: 0.9rem;
-    margin-bottom: var(--space-xs);
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--space-xs);
+    margin-bottom: var(--space-sm);
   }
 
-  .arrival-time {
+  .airline {
+    font-family: var(--font-body);
+    font-weight: 700;
+    color: var(--color-steam);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .flight-no {
+    font-family: var(--font-mono);
+    color: var(--color-heritage-rust);
     font-size: 0.9rem;
+  }
+
+  .detail-row {
+    display: flex;
+    gap: var(--space-sm);
+    font-size: 0.9rem;
+  }
+  
+  .label {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--color-stone);
+    margin-top: 2px;
+  }
+  
+  .value {
     color: var(--color-text-main);
-    font-weight: 500;
+  }
+
+  @media (max-width: 600px) {
+    .segment {
+      grid-template-columns: 60px 20px 1fr;
+      gap: var(--space-sm);
+    }
+    .time { font-size: 1rem; }
   }
 </style>

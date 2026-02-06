@@ -1,8 +1,11 @@
 
-# Tasmanië 2026
+# Tasmanië 2026 - WCWR Edition
 
 Reiswebsite voor de Tasmanië rondreis van 2026.
 Volledig statisch gegenereerd (SSG) met Astro + React + Leaflet.
+**Redesign gebaseerd op de West Coast Wilderness Railway (WCWR) huisstijl.**
+
+Zie `docs/style-guide.md` voor design tokens.
 
 ## Features
 - **Planning**: Fullscreen dag-tot-dag overzicht.

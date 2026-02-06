@@ -4,29 +4,36 @@ import Layout from '../layouts/Layout.astro';
 import StayCard from '../components/StayCard.astro';
 import Map from '../components/Map.tsx';
 import staysData from '../data/stays.json';
-
-// Type checking imports
 import type { Stay } from '../types';
 
 const stays: Stay[] = staysData as Stay[];
 ---
 
-<Layout title="Tasmanië 2026 - Verblijven">
+<Layout title="Verblijven | Tasmanië 2026">
   <main class="stays-page">
-    <section class="map-section">
-      <div class="container container-map">
-        <h2>Kaart & Verblijven</h2>
-        <div class="map-wrapper">
-             <Map client:only="react" stays={stays} />
+    <section class="hero-section text-center container">
+      <span class="eyebrow">Accommodaties</span>
+      <h1>Overnachten in Stijl</h1>
+      <p>Van knusse cottages in de bergen tot beach houses aan de oostkust.</p>
+    </section>
+
+    <div class="map-container container">
+      <div class="map-frame">
+        <Map client:only="react" stays={stays} />
+        <div class="map-overlay">
+           <span class="icon">📍</span>
+           <span>Interactieve Kaart</span>
         </div>
       </div>
-    </section>
+    </div>
 
     <section class="stays-grid container">
       {stays.length > 0 ? (
         stays.map(stay => <StayCard stay={stay} />)
       ) : (
-        <p class="empty-state">Geen verblijven gevonden. Controleer de data.</p>
+        <div class="empty-state">
+          <p>Nog geen verblijven ingevoerd.</p>
+        </div>
       )}
     </section>
   </main>
@@ -34,47 +41,68 @@ const stays: Stay[] = staysData as Stay[];
 
 <style>
   .stays-page {
-    background: var(--color-mist);
+    background-color: var(--color-paper);
     min-height: 100vh;
     padding-bottom: var(--space-xl);
   }
 
-  .map-section {
-    background: white;
-    padding: var(--space-md) 0;
-    margin-bottom: var(--space-md);
-    border-bottom: 1px solid var(--color-mist);
+  .hero-section {
+    padding: var(--space-lg) var(--space-md);
   }
 
-  .container-map {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
+  .eyebrow {
+    display: block;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-heritage-rust);
+    margin-bottom: var(--space-xs);
+    font-weight: 700;
+  }
+  
+  .map-container {
+    margin-bottom: var(--space-lg);
   }
 
-  .map-wrapper {
-    height: 500px; /* Fixed height for map */
+  .map-frame {
+    height: 500px;
     width: 100%;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--color-mist);
+    position: relative;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-card);
   }
 
-  h2 {
-    color: var(--color-forest-dark);
-    margin-bottom: var(--space-sm);
+  .map-overlay {
+    position: absolute;
+    top: var(--space-sm);
+    left: var(--space-sm);
+    background-color: var(--color-white);
+    padding: 0.5rem 1rem;
+    border-radius: 99px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-wilderness);
+    box-shadow: var(--shadow-sm);
+    z-index: 1000; /* Above Leaflet */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   .stays-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: var(--space-md);
   }
-
+  
   .empty-state {
+    grid-column: 1 / -1;
     text-align: center;
     padding: var(--space-xl);
-    color: var(--color-text-light);
+    color: var(--color-stone);
+    border: 2px dashed var(--color-border); 
+    border-radius: var(--radius-md);
   }
 </style>
