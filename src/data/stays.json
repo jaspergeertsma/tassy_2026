@@ -1,42 +1,74 @@
 [
   {
-    "name": "Campbell town",
-    "region": "Campbell town",
+    "id": "stay-1-campbell",
+    "name": "Haven on High",
+    "region": "Midlands",
+    "location": "Campbell Town, TAS",
+    "type": "Historic Home",
     "checkIn": "2026-12-18",
     "checkOut": "2026-12-23",
     "days": 5,
-    "id": "stay-1"
+    "coordinates": [
+      -41.931,
+      147.495
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2070&auto=format&fit=crop"
+    ],
+    "link": "https://www.airbnb.nl/rooms/1378500207349021714?adults=7&check_in=2026-12-17&check_out=2026-12-23&children=2&location=Tasmani%C3%AB%2C%20Australi%C3%AB&search_mode=regular_search&source_impression_id=p3_1769969621_P3mOnXVzwf1sq7an&previous_page_section_name=1001&federated_search_id=a08734a8-b045-4e55-b1b6-45d315a08cc5",
+    "amenities": [
+      "5 Slaapkamers",
+      "9 Bedden",
+      "3 Badkamers",
+      "Historisch"
+    ]
   },
   {
-    "name": "Tussenstop",
-    "region": "Tussenstop",
-    "checkIn": "2026-12-23",
-    "checkOut": "2026-12-24",
-    "days": 1,
-    "id": "stay-2"
-  },
-  {
-    "name": "Cygnet",
-    "region": "Cygnet",
+    "id": "stay-3-cygnet",
+    "name": "The Barn",
+    "region": "Huon Valley",
+    "location": "Cygnet, TAS",
+    "type": "Converted Barn",
     "checkIn": "2026-12-24",
     "checkOut": "2026-12-29",
     "days": 5,
-    "id": "stay-3"
+    "coordinates": [
+      -43.160,
+      147.078
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?q=80&w=2070&auto=format&fit=crop"
+    ],
+    "link": "https://www.airbnb.nl/rooms/53381011?adults=7&check_in=2026-12-23&check_out=2026-12-29&children=2&location=Tasmani%C3%AB%2C%20Australi%C3%AB&search_mode=regular_search&source_impression_id=p3_1770319742_P3NKl5u0ewZCFlt6&previous_page_section_name=1001&federated_search_id=f0e05c59-8733-4519-9fb4-01a2f409a58b&guests=1",
+    "amenities": [
+      "4 Slaapkamers",
+      "7 Bedden",
+      "2 Badkamers",
+      "Boerderij"
+    ]
   },
   {
-    "name": "Tussenstop",
-    "region": "Tussenstop",
-    "checkIn": "2026-12-29",
-    "checkOut": "2026-12-31",
-    "days": 3,
-    "id": "stay-4"
-  },
-  {
-    "name": "Northwest",
+    "id": "stay-5-arthur",
+    "name": "Arthur River Lodge",
     "region": "Northwest",
+    "location": "Arthur River, TAS",
+    "type": "Wilderness Lodge",
     "checkIn": "2026-12-31",
-    "checkOut": "2026-01-06",
-    "days": 4,
-    "id": "stay-5"
+    "checkOut": "2027-01-06",
+    "days": 6,
+    "coordinates": [
+      -41.050,
+      144.668
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1449156493391-d2cfa28e468b?q=80&w=2000&auto=format&fit=crop"
+    ],
+    "link": "https://www.airbnb.nl/rooms/51854599?adults=7&check_in=2026-12-29&check_out=2027-01-05&children=2&location=Tasmani%C3%AB%2C%20Australi%C3%AB&search_mode=regular_search&source_impression_id=p3_1769953097_P3rwraXCOziUyBzy&previous_page_section_name=1001&federated_search_id=d09f160c-e237-482c-8c5f-6754336e3e39",
+    "amenities": [
+      "5 Slaapkamers",
+      "8 Bedden",
+      "2 Badkamers",
+      "Rivierzicht"
+    ]
   }
 ]
