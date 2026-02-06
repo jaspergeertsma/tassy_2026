@@ -47,7 +47,7 @@ const days = itineraryData;
 
 <style>
   .planning-page {
-    background-color: var(--color-paper);
+    background-color: var(--color-bg-dark); /* Dark background */
     min-height: 100vh;
     padding-bottom: var(--space-xl);
   }
@@ -59,23 +59,22 @@ const days = itineraryData;
   }
 
   .eyebrow {
-    display: block;
-    font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-family: var(--font-display);
+    font-size: 1rem;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--color-heritage-rust);
+    letter-spacing: 0.2em;
+    color: var(--color-accent-gold);
+    display: block;
     margin-bottom: var(--space-xs);
-    font-weight: 700;
   }
 
   .intro-text {
-    font-family: var(--font-display);
+    font-family: var(--font-body);
     font-size: 1.25rem;
-    color: var(--color-text-light);
+    color: var(--color-text-muted);
     max-width: 600px;
     margin: 0 auto;
-    font-style: italic;
+    line-height: 1.6;
   }
 
   .layout-grid {
@@ -84,52 +83,37 @@ const days = itineraryData;
     grid-template-columns: 240px 1fr;
   }
 
-  .sidebar {
-    display: none;
-  }
-
   .toc-nav {
     position: sticky;
     top: calc(var(--header-height) + 2rem);
-    background-color: var(--color-white);
+    background-color: var(--color-bg-card);
     padding: var(--space-md);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-border);
-    max-height: 80vh;
-    overflow-y: auto;
+    border: 1px solid rgba(255,255,255,0.05);
   }
-
+  
   .toc-title {
-    font-size: 1rem;
+    font-size: 1.25rem;
+    color: var(--color-text-cream);
     margin-bottom: var(--space-sm);
-    padding-bottom: var(--space-xs);
-    border-bottom: 2px solid var(--color-wilderness);
-  }
-
-  .toc-list {
-    list-style: none;
+    border-bottom: 2px solid var(--color-accent-blue);
+    padding-bottom: 0.5rem;
   }
 
   .toc-link {
     display: flex;
     gap: var(--space-sm);
     padding: 0.5rem 0;
-    color: var(--color-text-light);
-    font-size: 0.9rem;
-    border-bottom: 1px solid transparent;
+    color: var(--color-text-muted);
     transition: all 0.2s;
   }
 
   .toc-link:hover {
-    color: var(--color-heritage-rust);
-    transform: translateX(2px);
+    color: var(--color-accent-gold);
+    transform: translateX(4px);
   }
+  
+  .day-num { color: var(--color-accent-blue); font-family: var(--font-mono); }
 
-  .day-num {
-    font-family: var(--font-mono);
-    color: var(--color-stone);
-    font-size: 0.8rem;
-  }
 
   .day-label {
     white-space: nowrap;

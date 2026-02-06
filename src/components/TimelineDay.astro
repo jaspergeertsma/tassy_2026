@@ -8,7 +8,6 @@ interface Props {
 
 const { day } = Astro.props;
 
-// Date Setup
 const dateObj = new Date(day.date);
 const dayName = dateObj.toLocaleDateString('nl-NL', { weekday: 'long' });
 const dayNum = dateObj.getDate();
@@ -38,11 +37,10 @@ const month = dateObj.toLocaleDateString('nl-NL', { month: 'short' }).toUpperCas
 
       {day.activities.length > 0 && (
         <div class="activities-block">
-          <h4 class="section-label">Highlights</h4>
           <ul class="activities-list">
             {day.activities.map(act => (
               <li>
-                <span class="bullet">•</span>
+                <span class="bullet">+</span>
                 {act}
               </li>
             ))}
@@ -52,10 +50,10 @@ const month = dateObj.toLocaleDateString('nl-NL', { month: 'short' }).toUpperCas
 
       {day.drive && (
         <div class="drive-info">
-          <span class="icon">🚐</span>
-          <span>{day.drive.km} km</span>
+          <span class="drive-label">DRIVE:</span>
+          <span class="drive-val">{day.drive.km} km</span>
           <span class="sep">/</span>
-          <span>{day.drive.time}</span>
+          <span class="drive-val">{day.drive.time}</span>
         </div>
       )}
     </div>
@@ -65,26 +63,24 @@ const month = dateObj.toLocaleDateString('nl-NL', { month: 'short' }).toUpperCas
 <style>
   .timeline-day {
     display: grid;
-    grid-template-columns: 80px 1fr; /* Fixed calendar width */
+    grid-template-columns: 80px 1fr;
     gap: var(--space-md);
     padding: var(--space-md);
-    background-color: var(--color-white);
-    border-radius: var(--radius-md);
+    background-color: var(--color-bg-card);
+    border: 1px solid rgba(255,255,255,0.05);
     margin-bottom: var(--space-md);
-    border: 1px solid var(--color-border);
     transition: all 0.3s ease;
     scroll-margin-top: calc(var(--header-height) + 2rem);
   }
 
   .timeline-day:hover {
-    border-color: var(--color-wilderness-light);
-    box-shadow: var(--shadow-card);
+    border-color: var(--color-accent-gold);
     transform: translateX(4px);
   }
 
   /* Calendar Badge */
   .calendar-badge {
-    background-color: var(--color-paper-dark);
+    background-color: rgba(0,0,0,0.2);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -92,33 +88,30 @@ const month = dateObj.toLocaleDateString('nl-NL', { month: 'short' }).toUpperCas
     border-radius: var(--radius-sm);
     padding: var(--space-sm) 0.5rem;
     height: fit-content;
-    color: var(--color-wilderness);
-    border: 1px solid var(--color-border);
+    border: 1px solid rgba(255,255,255,0.1);
   }
 
   .bad-month {
     font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 0.1em;
-    margin-bottom: 0.25rem;
+    color: var(--color-text-muted);
   }
 
   .bad-day {
     font-family: var(--font-display);
-    font-size: 2rem;
-    font-weight: 700;
+    font-size: 2.5rem;
+    font-weight: 800;
     line-height: 1;
-    margin-bottom: 0.25rem;
-    color: var(--color-heritage-rust);
+    color: var(--color-accent-gold);
   }
 
   .bad-weekday {
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     text-transform: uppercase;
-    color: var(--color-stone);
-    font-weight: 500;
+    color: var(--color-text-muted);
+    letter-spacing: 0.1em;
   }
-
 
   /* Content */
   .day-content {
@@ -133,7 +126,7 @@ const month = dateObj.toLocaleDateString('nl-NL', { month: 'short' }).toUpperCas
     align-items: flex-start;
     margin-bottom: var(--space-md);
     padding-bottom: var(--space-sm);
-    border-bottom: 1px dashed var(--color-border);
+    border-bottom: 2px dashed rgba(255,255,255,0.1);
   }
 
   .day-counter {
@@ -141,78 +134,74 @@ const month = dateObj.toLocaleDateString('nl-NL', { month: 'short' }).toUpperCas
     font-family: var(--font-mono);
     font-size: 0.75rem;
     text-transform: uppercase;
-    color: var(--color-heritage-rust);
+    color: var(--color-accent-blue);
     margin-bottom: 0.25rem;
     letter-spacing: 0.1em;
   }
 
   .day-title {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    color: var(--color-steam);
+    font-size: 2rem;
+    color: var(--color-text-cream);
     margin: 0;
-    line-height: 1.2;
+    line-height: 1;
   }
   
   .region-pill {
-    background-color: var(--color-wilderness);
-    color: var(--color-white);
+    background-color: transparent;
+    border: 1px solid var(--color-text-muted);
+    color: var(--color-text-muted);
     padding: 0.25rem 0.75rem;
-    border-radius: 99px;
     font-size: 0.7rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
     white-space: nowrap;
   }
 
-
   .description {
-    font-size: 1rem;
-    color: var(--color-text-main);
+    font-size: 1.1rem;
+    color: var(--color-text-cream);
     line-height: 1.6;
     margin-bottom: var(--space-md);
-  }
-
-  .section-label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-text-light);
-    margin-bottom: var(--space-xs);
-    font-family: var(--font-body);
   }
 
   .activities-list {
     list-style: none;
     padding: 0;
+    margin-bottom: var(--space-md);
   }
 
   .activities-list li {
     display: flex;
     align-items: flex-start;
     margin-bottom: 0.5rem;
-    font-size: 0.95rem;
-    color: var(--color-wilderness-light);
+    font-size: 1rem;
+    color: var(--color-text-muted);
   }
 
   .bullet {
-    color: var(--color-heritage-rust);
-    margin-right: 0.5rem;
-    font-size: 1.2rem;
-    line-height: 1rem;
+    color: var(--color-accent-gold);
+    margin-right: 0.75rem;
+    font-weight: bold;
   }
 
+  .drive-info {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    background: rgba(0,0,0,0.2);
+    padding: 0.5rem;
+    display: inline-block;
+    border-radius: 2px;
+  }
+  
+  .drive-label { color: var(--color-accent-rust); margin-right: 0.5rem; }
+  .drive-val { color: var(--color-text-cream); }
+  .sep { margin: 0 0.5rem; opacity: 0.5; }
+
   @media (max-width: 600px) {
-    .timeline-day {
-      grid-template-columns: 1fr;
-    }
-    .calendar-badge {
-      flex-direction: row;
-      gap: 0.5rem;
-      align-items: baseline;
-      padding: 0.5rem var(--space-md);
-    }
+    .timeline-day { grid-template-columns: 1fr; }
+    .calendar-badge { flex-direction: row; gap: 1rem; align-items: baseline; }
     .bad-day { font-size: 1.5rem; }
   }
 </style>

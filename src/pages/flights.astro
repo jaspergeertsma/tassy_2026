@@ -41,72 +41,68 @@ const flights: Flight[] = flightsData as Flight[];
 
 <style>
   .flights-page {
-    background-color: var(--color-paper);
+    background-color: var(--color-bg-dark);
     min-height: 100vh;
     padding-bottom: var(--space-xl);
   }
 
   .header-section {
     padding: var(--space-lg) var(--space-md);
-    background-color: var(--color-paper-dark);
+    background-color: #151312; /* Darker header */
     margin-bottom: var(--space-lg);
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 2px solid var(--color-accent-rust);
   }
 
   .eyebrow {
-    font-size: 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--color-heritage-rust);
-    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--color-accent-rust);
     display: block;
     margin-bottom: var(--space-xs);
   }
 
   .intro {
-    font-family: var(--font-display);
+    font-family: var(--font-body);
     font-size: 1.25rem;
-    color: var(--color-wilderness-light);
-    font-style: italic;
-  }
-
-  .timeline-container {
-    max-width: 800px;
+    color: var(--color-text-muted);
+    max-width: 600px;
     margin: 0 auto;
+  }
+  
+  .timeline-container {
+    max-width: 900px;
   }
 
   .trip-block {
-    background-color: var(--color-white);
+    background-color: var(--color-bg-card);
     padding: var(--space-lg);
-    border-radius: var(--radius-lg); /** WCWR style might use less radius, sticking to guide 4px? Guide says 4px/8px. */
-    box-shadow: var(--shadow-card);
+    border: 1px solid rgba(255,255,255,0.05);
     margin-bottom: var(--space-xl);
-    border: 1px solid var(--color-border);
+    position: relative;
   }
 
   .trip-header {
     margin-bottom: var(--space-lg);
-    text-align: center;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: var(--space-md);
   }
 
   .trip-title {
-    font-family: var(--font-display);
-    font-size: 1.75rem;
-    color: var(--color-wilderness);
-    margin-bottom: var(--space-sm);
+    font-size: 3rem;
+    color: var(--color-text-cream);
+    margin-bottom: 0;
+    line-height: 0.9;
   }
 
-  .divider {
-    height: 3px;
-    width: 60px;
-    background-color: var(--color-heritage-rust);
-    margin: 0 auto;
-  }
+  .divider { display: none; }
   
   .empty-state {
     text-align: center;
     padding: var(--space-xl);
-    color: var(--color-stone);
-    border: 2px dashed var(--color-border);
+    color: var(--color-text-muted);
+    border: 2px dashed rgba(255,255,255,0.1);
   }
 </style>

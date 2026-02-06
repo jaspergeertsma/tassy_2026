@@ -1,5 +1,7 @@
 
 ---
+import { getPath } from '../utils';
+
 const links = [
   { href: '/planning', label: 'Planning' },
   { href: '/stays', label: 'Overnachten' },
@@ -9,18 +11,19 @@ const links = [
 
 <nav class="sticky-nav">
   <div class="container nav-container">
-    <a href="/" class="logo">
-      <span class="logo-loc">Tasmanië</span>
-      <span class="logo-year">2026</span>
+    <a href={getPath('/')} class="logo">
+      <span class="logo-top">Wilderness</span>
+      <span class="logo-main">Tasmanië</span>
+      <span class="logo-bottom">Railway 2026</span>
     </a>
     
     <div class="nav-links-wrapper">
       <ul class="nav-links">
         {links.map(link => (
-          <li><a href={link.href} class="nav-item">{link.label}</a></li>
+          <li><a href={getPath(link.href)} class="nav-item">{link.label}</a></li>
         ))}
       </ul>
-      <a href="/planning.pdf" download class="btn btn-secondary btn-sm">Download PDF</a>
+      <a href={getPath('/planning.pdf')} download class="btn btn-outline btn-sm">PDF</a>
     </div>
   </div>
 </nav>
@@ -30,13 +33,12 @@ const links = [
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.98);
+    background: rgba(31, 29, 27, 0.95); /* Dark background */
     backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 2px solid rgba(255,255,255,0.05);
     height: var(--header-height);
     display: flex;
     align-items: center;
-    box-shadow: 0 1px 0 rgba(0,0,0,0.02);
   }
 
   .nav-container {
@@ -49,29 +51,19 @@ const links = [
   .logo {
     display: flex;
     flex-direction: column;
-    line-height: 1;
-    color: var(--color-wilderness);
+    align-items: center;
+    line-height: 0.9;
+    color: var(--color-text-cream);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
     font-family: var(--font-display);
-    transition: color 0.2s ease;
-  }
-
-  .logo:hover {
-    color: var(--color-heritage-rust);
-  }
-
-  .logo-loc {
-    font-size: 1.5rem;
-    font-weight: 700;
+    border: 2px solid var(--color-text-cream);
+    padding: 4px 8px;
+    border-radius: 2px;
   }
   
-  .logo-year {
-    font-size: 0.85rem;
-    font-weight: 400;
-    color: var(--color-stone);
-    margin-top: 2px;
-  }
+  .logo-top { font-size: 0.7rem; letter-spacing: 0.2em; }
+  .logo-main { font-size: 1.5rem; font-weight: 800; letter-spacing: 0.05em; margin: 2px 0; }
+  .logo-bottom { font-size: 0.7rem; letter-spacing: 0.2em; color: var(--color-accent-gold); }
 
   .nav-links-wrapper {
     display: flex;
@@ -81,50 +73,39 @@ const links = [
 
   .nav-links {
     list-style: none;
-    display: none; /* Mobile first hidden */
+    display: none;
     gap: var(--space-md);
-    margin: 0;
-    padding: 0;
   }
 
   @media (min-width: 768px) {
-    .nav-links {
-      display: flex;
-    }
+    .nav-links { display: flex; }
   }
 
   .nav-item {
-    font-family: var(--font-body);
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: var(--color-steam);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-text-cream);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    position: relative;
-    padding: 0.5rem 0;
-  }
-
-  .nav-item::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background-color: var(--color-heritage-rust);
-    transition: width 0.3s cubic-bezier(0.2, 1, 0.2, 1);
+    letter-spacing: 0.1em;
+    opacity: 0.7;
+    transition: opacity 0.2s;
   }
 
   .nav-item:hover {
-    color: var(--color-heritage-rust);
+    opacity: 1;
+    color: var(--color-accent-gold);
   }
   
-  .nav-item:hover::after {
-    width: 100%;
-  }
-
-  .btn-sm {
-    padding: 0.5rem 1.25rem;
+  .btn-outline {
+    border: 1px solid var(--color-text-muted);
+    padding: 0.5rem 1rem;
+    color: var(--color-text-cream);
     font-size: 0.8rem;
+    border-radius: 2px;
+  }
+  .btn-outline:hover {
+    border-color: var(--color-accent-gold);
+    color: var(--color-accent-gold);
   }
 </style>

@@ -1,218 +1,249 @@
-
 ---
 import Layout from '../layouts/Layout.astro';
+import { getPath } from '../utils';
 
 const blocks = [
   {
-    title: "De Planning",
-    subtitle: "Route & Schema",
-    desc: "Een tocht van drie weken langs de hoogtepunten van het eiland. Van dag tot dag uitgestippeld.",
+    title: "PLANNING",
+    subtitle: "THE ROUTE",
+    desc: "A three-week expedition through the island's untamed heart.",
     link: "/planning",
-    image: "https://images.unsplash.com/photo-1549608276-5786777e6587?q=80&w=2070&auto=format&fit=crop", // Map/Compass/Route feel
-    cta: "Bekijk Schema"
+    image: "https://images.unsplash.com/photo-1549608276-5786777e6587?q=80&w=2070&auto=format&fit=crop", 
+    color: "var(--color-accent-gold)",
+    cta: "VIEW ITINERARY"
   },
   {
-    title: "Verblijven",
-    subtitle: "Overnachten",
-    desc: "Unieke locaties in de wildernis. Van historische cottages tot moderne cabins met uitzicht.",
+    title: "STAYS",
+    subtitle: "ACCOMMODATION",
+    desc: "From miner's cottages to cliffside cabins.",
     link: "/stays",
-    image: "https://images.unsplash.com/photo-1449156493391-d2cfa28e468b?q=80&w=2000&auto=format&fit=crop", // Cabin/Cozy
-    cta: "Ontdek Plekken"
+    image: "https://images.unsplash.com/photo-1449156493391-d2cfa28e468b?q=80&w=2000&auto=format&fit=crop", 
+    color: "var(--color-accent-blue)",
+    cta: "EXPLORE LODGINGS"
   },
   {
-    title: "Vliegreis",
-    subtitle: "Logistiek",
-    desc: "Vluchtnummers, tijden en overstappen. Alles wat je moet weten voor vertrek.",
+    title: "FLIGHTS",
+    subtitle: "LOGISTICS",
+    desc: "24 hours. 17,000 km. The journey begins here.",
     link: "/flights",
-    image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074&auto=format&fit=crop", // Wing/Clouds
-    cta: "Vluchtinfo"
+    image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074&auto=format&fit=crop", 
+    color: "var(--color-accent-rust)",
+    cta: "FLIGHT INFO"
   }
 ];
 ---
 
-<Layout title="Tasmanië 2026 | The Wilderness Journey">
+<Layout title="Tasmanië 2026 | WILDERNESS RAILWAY">
   <main>
-    <section class="hero-fullscreen">
-      <div class="hero-overlay"></div>
+    <section class="hero-industrial">
       <div class="hero-content container">
-        <span class="hero-eyebrow scroll-reveal">15 Dec 2026 — 08 Jan 2027</span>
-        <h1 class="hero-title scroll-reveal">The Wilderness Journey</h1>
-        <p class="hero-lead scroll-reveal">
-          Een ontdekkingsreis door het ruige hart van Tasmanië. 
-          Oeroude regenwouden, verlaten mijndorpen en de ongetemde oceaan.
-        </p>
-        <div class="hero-actions scroll-reveal">
-          <a href="/planning" class="btn btn-primary">Start de Reis</a>
+        <h1 class="hero-title scroll-reveal">
+          <span class="line-1">JOURNEY WITH US</span>
+          <span class="line-2">THROUGH RUGGED</span>
+          <span class="line-3">TERRAIN &</span>
+          <span class="line-4">BREATHTAKING SCENERY</span>
+        </h1>
+        <div class="hero-cta scroll-reveal">
+           <a href={getPath('/planning')} class="btn btn-primary">START THE EXPEDITION</a>
         </div>
       </div>
+      <div class="hero-grain"></div>
     </section>
 
-    <section class="intro-block container text-center">
-      <h2 class="section-title">Welkom in Tasmanië</h2>
-      <p class="section-text">
-        Dit is het digitale logboek voor onze rondreis. Hier vind je alle details
-        over de route, de overnachtingen en praktische zaken. 
-        Geïnspireerd door de pioniers van weleer.
-      </p>
-      <div class="divider-icon">✦</div>
-    </section>
-
-    <section class="nav-blocks container">
+    <section class="poster-grid container">
       {blocks.map(block => (
-        <article class="nav-card scroll-reveal">
-          <div class="card-image">
+        <a href={getPath(block.link)} class="poster-card scroll-reveal" style={`--card-accent: ${block.color}`}>
+          <div class="poster-header" style={`background-color: ${block.color}`}>
+            <span class="poster-subtitle">{block.subtitle}</span>
+            <h3 class="poster-title">{block.title}</h3>
+          </div>
+          <div class="poster-image">
             <img src={block.image} alt={block.title} loading="lazy" />
           </div>
-          <div class="card-body">
-            <span class="card-subtitle">{block.subtitle}</span>
-            <h3 class="card-title">{block.title}</h3>
-            <p class="card-text">{block.desc}</p>
-            <a href={block.link} class="btn-text">{block.cta} &rarr;</a>
+          <div class="poster-body">
+            <p>{block.desc}</p>
+            <span class="poster-cta">{block.cta} &rarr;</span>
           </div>
-        </article>
+        </a>
       ))}
+    </section>
+
+    <section class="quote-block container text-center scroll-reveal">
+      <p class="quote-text">"FIND A WAY OR MAKE A WAY"</p>
+      <span class="quote-source">THE WEST COAST PIONEERS</span>
     </section>
   </main>
 </Layout>
 
 <style>
-  /* Hero */
-  .hero-fullscreen {
+  /* Hero Industrial */
+  .hero-industrial {
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-cream);
+    padding: var(--space-xl) 0;
     position: relative;
-    height: 90vh;
-    min-height: 600px;
+    overflow: hidden;
+    min-height: 80vh;
     display: flex;
     align-items: center;
-    background-image: url('https://images.unsplash.com/photo-1543292723-863ac340d869?q=80&w=2070&auto=format&fit=crop'); /* Misty Train/Forest vibe */
-    background-size: cover;
-    background-position: center;
-    color: var(--color-white);
-    overflow: hidden;
+    justify-content: center;
   }
 
-  .hero-overlay {
+  .hero-grain { /* Quick texture overlay */
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(27, 59, 54, 0.3), rgba(27, 59, 54, 0.8));
-    z-index: 1;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    pointer-events: none;
   }
 
   .hero-content {
     position: relative;
     z-index: 2;
     text-align: center;
-    max-width: 800px; /* Constrain width */
-    margin: 0 auto;
-  }
-
-  .hero-eyebrow {
-    display: block;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--color-heritage-rust);
-    margin-bottom: var(--space-sm);
-    font-weight: 700;
   }
 
   .hero-title {
-    font-size: clamp(3rem, 8vw, 5rem);
-    color: var(--color-white);
-    margin-bottom: var(--space-md);
-    text-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    line-height: 1.1;
-  }
-
-  .hero-lead {
-    font-size: 1.25rem;
-    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 0.85;
     margin-bottom: var(--space-lg);
-    opacity: 0.9;
-    font-weight: 300;
   }
 
-  /* Intro */
-  .intro-block {
-    padding: var(--space-xl) var(--space-md);
-  }
-
-  .section-text {
-    font-size: 1.1rem;
-    color: var(--color-text-light);
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .divider-icon {
-    margin-top: var(--space-md);
-    font-size: 1.5rem;
-    color: var(--color-heritage-rust);
-  }
-
-  /* Nav Blocks */
-  .nav-blocks {
-    padding-bottom: var(--space-xl);
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--space-lg);
-  }
-
-  .nav-card {
-    background-color: var(--color-white);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .nav-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
-    border-color: var(--color-heritage-rust);
-  }
-
-  .card-image {
-    height: 240px;
-    overflow: hidden;
-    background-color: var(--color-paper-dark);
+  .line-1, .line-4 {
+    font-size: clamp(3rem, 6vw, 5rem);
+    color: transparent;
+    -webkit-text-stroke: 2px var(--color-text-cream); /* Hollow text effect */
+    letter-spacing: 0.1em;
   }
   
-  .card-image img {
+  .line-2, .line-3 {
+    font-size: clamp(4rem, 9vw, 8rem);
+    color: var(--color-text-cream); /* Solid text */
+    letter-spacing: 0.02em;
+  }
+  
+  .line-3 {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .line-4 {
+    color: var(--color-accent-gold);
+    -webkit-text-stroke: 0; /* Solid Gold */
+    font-size: clamp(3rem, 7vw, 6rem);
+  }
+
+  /* Poster Grid */
+  .poster-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-md);
+    padding-bottom: var(--space-xl);
+  }
+
+  .poster-card {
+    background-color: var(--color-bg-card);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+    border: 2px solid transparent; /* Prepare for hover */
+  }
+
+  .poster-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--card-accent);
+  }
+
+  .poster-header {
+    padding: var(--space-md);
+    color: var(--color-bg-dark); /* Dark text on colored bg */
+  }
+
+  .poster-subtitle {
+    font-family: var(--font-body);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
+  }
+
+  .poster-title {
+    font-size: 2.5rem;
+    color: var(--color-bg-dark);
+    margin: 0;
+    line-height: 0.9;
+    text-shadow: none; /* Override default */
+  }
+
+  .poster-image {
+    height: 250px;
+    overflow: hidden;
+    filter: sepia(0.3) contrast(1.1); /* Vintage look */
+    transition: filter 0.3s;
+  }
+  
+  .poster-card:hover .poster-image {
+    filter: none;
+  }
+
+  .poster-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
   }
 
-  .nav-card:hover .card-image img {
-    transform: scale(1.05);
-  }
-
-  .card-body {
+  .poster-body {
     padding: var(--space-md);
-    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
-  .card-subtitle {
-    display: block;
-    font-size: 0.75rem;
+  .poster-body p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: var(--space-md);
+    color: var(--color-text-cream);
+  }
+
+  .poster-cta {
+    font-family: var(--font-display);
+    font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--color-stone);
-    margin-bottom: var(--space-xs);
-    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--card-accent);
   }
-
-  .card-title {
-    font-size: 1.5rem;
-    color: var(--color-wilderness);
-    margin-bottom: var(--space-sm);
+  
+  /* Quote Block */
+  .quote-block {
+    padding: var(--space-xl) 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
   }
-
-  .card-text {
-    font-size: 0.95rem;
-    color: var(--color-text-light);
-    margin-bottom: var(--space-md);
-    line-height: 1.6;
+  
+  .quote-text {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 800;
+    color: var(--color-accent-gold);
+    line-height: 1;
+    margin: 0 auto var(--space-md);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .quote-source {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    letter-spacing: 0.2em;
+    font-size: 0.9rem;
   }
 </style>

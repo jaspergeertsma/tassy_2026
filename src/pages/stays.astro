@@ -41,7 +41,7 @@ const stays: Stay[] = staysData as Stay[];
 
 <style>
   .stays-page {
-    background-color: var(--color-paper);
+    background-color: var(--color-bg-dark);
     min-height: 100vh;
     padding-bottom: var(--space-xl);
   }
@@ -51,13 +51,13 @@ const stays: Stay[] = staysData as Stay[];
   }
 
   .eyebrow {
-    display: block;
-    font-size: 0.85rem;
+    font-family: var(--font-display);
+    font-size: 1rem;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--color-heritage-rust);
+    letter-spacing: 0.2em;
+    color: var(--color-accent-blue);
+    display: block;
     margin-bottom: var(--space-xs);
-    font-weight: 700;
   }
   
   .map-container {
@@ -67,29 +67,28 @@ const stays: Stay[] = staysData as Stay[];
   .map-frame {
     height: 500px;
     width: 100%;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-sm);
     overflow: hidden;
     position: relative;
-    border: 1px solid var(--color-border);
-    box-shadow: var(--shadow-card);
+    border: 2px solid rgba(255,255,255,0.1);
   }
 
   .map-overlay {
     position: absolute;
     top: var(--space-sm);
     left: var(--space-sm);
-    background-color: var(--color-white);
+    background-color: var(--color-bg-dark);
     padding: 0.5rem 1rem;
-    border-radius: 99px;
+    border: 1px solid var(--color-text-muted);
     font-size: 0.85rem;
     font-weight: 700;
-    color: var(--color-wilderness);
-    box-shadow: var(--shadow-sm);
-    z-index: 1000; /* Above Leaflet */
+    color: var(--color-text-cream);
+    z-index: 1000;
     display: flex;
     align-items: center;
     gap: 0.5rem;
   }
+
 
   .stays-grid {
     display: grid;

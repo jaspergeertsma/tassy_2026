@@ -12,36 +12,28 @@ const { stay } = Astro.props;
 <article class="stay-card scroll-reveal">
   <div class="image-wrapper">
     <img src={stay.images?.[0] || 'https://images.unsplash.com/photo-1542718610-a1d656d1884c?q=80&w=2070&auto=format&fit=crop'} alt={stay.name} loading="lazy" />
+    <span class="region-badge">{stay.region}</span>
   </div>
   
   <div class="content">
     <header class="card-header">
-      <span class="region-label">{stay.region || 'Tasmanië'}</span>
       <h3 class="stay-title">{stay.name}</h3>
       <p class="location-details">{stay.location}</p>
     </header>
 
     <div class="meta-row">
-      <div class="meta-item">
-        <span class="icon">📅</span>
-        <span>{new Date(stay.checkIn).toLocaleDateString('nl-NL', { day: 'numeric', month: 'short' })}</span>
-        {stay.checkOut && (
-           <span class="range-sep">—</span>
-           <span>{new Date(stay.checkOut).toLocaleDateString('nl-NL', { day: 'numeric', month: 'short' })}</span>
-        )}
-      </div>
-      {stay.price && (
-        <div class="meta-item price">
-            {stay.price}
-        </div>
-      )}
+       <span class="dates">
+         {new Date(stay.checkIn).toLocaleDateString('nl-NL', { day: 'numeric', month: 'short' })}
+         {stay.checkOut && ` — ${new Date(stay.checkOut).toLocaleDateString('nl-NL', { day: 'numeric', month: 'short' })}`}
+       </span>
+       {stay.price && <span class="price">{stay.price}</span>}
     </div>
     
     <div class="actions">
        {stay.link ? (
-         <a href={stay.link} target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-full">Bekijk Details</a>
+         <a href={stay.link} target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-full">VIEW LODGING</a>
        ) : (
-         <span class="btn btn-disabled btn-full">Geen link beschikbaar</span>
+         <span class="btn btn-disabled btn-full">UNAVAILABLE</span>
        )}
     </div>
   </div>
@@ -49,27 +41,23 @@ const { stay } = Astro.props;
 
 <style>
   .stay-card {
-    background-color: var(--color-white);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    overflow: hidden;
+    background-color: var(--color-bg-card);
+    border: 2px solid transparent;
     display: flex;
     flex-direction: column;
     height: 100%;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    transition: all 0.3s ease;
   }
 
   .stay-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-hover);
-    border-color: var(--color-wilderness-light);
+    transform: translateY(-5px);
+    border-color: var(--color-accent-blue);
   }
 
   .image-wrapper {
     position: relative;
-    padding-top: 66.66%; /* 3:2 Aspect Ratio */
-    background-color: var(--color-paper-dark);
-    border-bottom: 1px solid var(--color-border);
+    padding-top: 60%;
+    background-color: #000;
     overflow: hidden;
   }
 
@@ -80,11 +68,27 @@ const { stay } = Astro.props;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.8s ease;
+    transition: transform 0.5s ease;
+    filter: sepia(0.2) contrast(1.1);
   }
 
   .stay-card:hover .image-wrapper img {
-    transform: scale(1.03);
+    transform: scale(1.05);
+    filter: none;
+  }
+  
+  .region-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--color-accent-gold);
+    color: var(--color-bg-dark);
+    font-family: var(--font-display);
+    font-weight: 700;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 
   .content {
@@ -98,63 +102,52 @@ const { stay } = Astro.props;
     margin-bottom: var(--space-md);
   }
 
-  .region-label {
-    display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-heritage-rust);
-    margin-bottom: var(--space-xs);
-  }
-
   .stay-title {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    color: var(--color-wilderness);
-    margin-bottom: 0.25rem;
-    line-height: 1.2;
+    font-size: 1.75rem;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-cream);
   }
 
   .location-details {
-    font-size: 0.95rem;
-    color: var(--color-stone);
-    font-style: italic;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .meta-row {
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    color: var(--color-text-light);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid rgba(255,255,255,0.1);
     padding-top: var(--space-sm);
-    margin-top: auto; /* Push to bottom */
+    margin-top: auto;
     margin-bottom: var(--space-md);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
   }
-
-  .meta-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  
+  .price {
+    color: var(--color-accent-gold);
   }
-
-  .icon { font-size: 1rem; opacity: 0.7; }
-  .price { font-weight: 700; color: var(--color-steam); }
   
   .btn-full {
     width: 100%;
-    justify-content: center;
-    font-size: 0.85rem;
+    font-size: 1rem;
     padding: 0.75rem;
   }
   
   .btn-disabled {
-    background: var(--color-paper-dark);
-    color: var(--color-stone);
-    cursor: not-allowed;
-    border: none;
+    display: block;
+    text-align: center;
+    border: 1px solid var(--color-text-muted);
+    color: var(--color-text-muted);
+    font-family: var(--font-display);
+    padding: 0.75rem;
+    font-size: 1rem;
+    opacity: 0.5;
   }
 </style>
