@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Campbell town",
+    "region": "Campbell town",
+    "checkIn": "2026-12-18",
+    "checkOut": "2026-12-23",
+    "days": 5,
+    "id": "stay-1"
+  },
+  {
+    "name": "Tussenstop",
+    "region": "Tussenstop",
+    "checkIn": "2026-12-23",
+    "checkOut": "2026-12-24",
+    "days": 1,
+    "id": "stay-2"
+  },
+  {
+    "name": "Cygnet",
+    "region": "Cygnet",
+    "checkIn": "2026-12-24",
+    "checkOut": "2026-12-29",
+    "days": 5,
+    "id": "stay-3"
+  },
+  {
+    "name": "Tussenstop",
+    "region": "Tussenstop",
+    "checkIn": "2026-12-29",
+    "checkOut": "2026-12-31",
+    "days": 3,
+    "id": "stay-4"
+  },
+  {
+    "name": "Northwest",
+    "region": "Northwest",
+    "checkIn": "2026-12-31",
+    "checkOut": "2026-01-06",
+    "days": 4,
+    "id": "stay-5"
+  }
+]

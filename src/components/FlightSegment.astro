@@ -1,0 +1,153 @@
+
+---
+import type { FlightSegment } from '../types';
+
+interface Props {
+  segment: FlightSegment;
+  isLast?: boolean;
+}
+
+const { segment, isLast } = Astro.props;
+---
+
+<div class="segment">
+  <div class="time-col">
+    <span class="time">{segment.departLocal}</span>
+    <span class="date">{new Date(segment.date).toLocaleDateString('nl-NL', { day: 'numeric', month: 'short' })}</span>
+  </div>
+  
+  <div class="line-col">
+    <div class="dot departing"></div>
+    <div class="line"></div>
+    {isLast && <div class="dot arriving"></div>}
+  </div>
+
+  <div class="info-col">
+    <div class="flight-card">
+      <header>
+        <span class="airport-code">{segment.from}</span>
+        <span class="arrow">&rarr;</span>
+        <span class="airport-code">{segment.to}</span>
+      </header>
+      <div class="details">
+        <span class="airline">{segment.airline}</span>
+        <span class="flight-no">{segment.flightNo}</span>
+        <span class="duration">{segment.duration}</span>
+      </div>
+      <div class="arrival-time">
+        <span>Aankomst: {segment.arriveLocal}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .segment {
+    display: flex;
+    gap: var(--space-md);
+    position: relative;
+    padding-bottom: var(--space-lg);
+  }
+  
+  .segment:last-child {
+    padding-bottom: 0;
+  }
+  .segment:last-child .line {
+    display: none;
+  }
+
+  .time-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    min-width: 80px;
+    text-align: right;
+    padding-top: 0.25rem;
+  }
+  .time {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-charcoal);
+  }
+  .date {
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+  }
+
+  .line-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 20px;
+  }
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-ocean);
+    z-index: 2;
+    border: 2px solid white;
+    box-shadow: 0 0 0 2px var(--color-mist);
+  }
+  .dot.arriving {
+    position: absolute;
+    bottom: 0;
+    background: var(--color-forest);
+  }
+  .line {
+    flex: 1;
+    width: 2px;
+    background: var(--color-mist);
+    margin: 4px 0;
+    transform-origin: top;
+    animation: growLine 1.5s ease-out forwards;
+  }
+  
+  @keyframes growLine {
+    from { transform: scaleY(0); }
+    to { transform: scaleY(1); }
+  }
+
+  .info-col {
+    flex: 1;
+    padding-bottom: var(--space-md);
+  }
+
+  .flight-card {
+    background: white;
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-mist);
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xs);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-forest-dark);
+  }
+  
+  .arrow {
+    color: var(--color-text-light);
+    font-size: 1rem;
+  }
+
+  .details {
+    display: flex;
+    gap: var(--space-md);
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    margin-bottom: var(--space-xs);
+  }
+
+  .arrival-time {
+    font-size: 0.9rem;
+    color: var(--color-text-main);
+    font-weight: 500;
+  }
+</style>

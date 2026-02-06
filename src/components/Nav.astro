@@ -1,0 +1,68 @@
+
+---
+const links = [
+  { href: '/', label: 'Tasmanië 2026' },
+  { href: '/planning', label: 'Planning' },
+  { href: '/stays', label: 'Overnachten' },
+  { href: '/flights', label: 'Vliegreis' },
+];
+---
+
+<nav class="sticky-nav">
+  <div class="container nav-container">
+    <a href="/" class="logo">Tasmanië <strong>2026</strong></a>
+    <ul class="nav-links">
+      {links.slice(1).map(link => (
+        <li><a href={link.href}>{link.label}</a></li>
+      ))}
+      <li><a href="/planning.pdf" download class="btn-download">Download PDF</a></li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-mist);
+    padding: var(--space-sm) 0;
+  }
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-ocean-light);
+  }
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: var(--space-md);
+    align-items: center;
+  }
+  a {
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  a:hover {
+    color: var(--color-ocean);
+  }
+  .btn-download {
+    padding: 0.5rem 1rem;
+    background: var(--color-forest);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+  }
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none; /* Mobile menu todo */
+    }
+  }
+</style>

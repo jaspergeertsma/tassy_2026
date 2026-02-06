@@ -1,0 +1,129 @@
+
+---
+import Layout from '../layouts/Layout.astro';
+import TimelineDay from '../components/TimelineDay.astro';
+import itineraryData from '../data/itinerary.json';
+
+const days = itineraryData;
+---
+
+<Layout title="Tasmanië 2026 - Planning">
+  <main class="planning-layout">
+    <aside class="sidebar">
+      <div class="sidebar-sticky">
+        <h2>Planning</h2>
+        <ul class="day-nav">
+          {days.map(day => (
+            <li>
+              <a href={`#day-${day.dayNumber}`}>
+                <span class="nav-day-num">{day.dayNumber}</span>
+                <span class="nav-day-title">{day.title}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </aside>
+    
+    <section class="timeline">
+      <h1>Reisroute</h1>
+      <div class="timeline-list">
+        {days.map(day => <TimelineDay day={day} />)}
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .planning-layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    min-height: 100vh;
+    background: var(--color-mist); /* Subtle bg */
+  }
+
+  .sidebar {
+    background: white;
+    border-right: 1px solid var(--color-mist);
+    display: none; /* Mobile first hidden, desktop visible */
+  }
+  
+  @media (min-width: 768px) {
+    .sidebar {
+      display: block;
+    }
+  }
+
+  .sidebar-sticky {
+    position: sticky;
+    top: 80px; /* Below navbar height approx */
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+    padding: var(--space-md);
+  }
+
+  .day-nav {
+    list-style: none;
+    margin-top: var(--space-md);
+  }
+  
+  .day-nav li {
+    margin-bottom: var(--space-xs);
+  }
+  
+  .day-nav a {
+    display: flex;
+    gap: var(--space-xs);
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: var(--radius-sm);
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    transition: background 0.2s, color 0.2s;
+  }
+  
+  .day-nav a:hover, .day-nav a:focus {
+    background: var(--color-mist);
+    color: var(--color-forest);
+  }
+  
+  .nav-day-num {
+    background: var(--color-ocean-light);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+  
+  .nav-day-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+  }
+
+  .timeline {
+    padding: var(--space-md) var(--space-lg);
+    max-width: 900px; /* Limit width */
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .planning-layout {
+      grid-template-columns: 1fr;
+    }
+    .timeline {
+      padding: var(--space-md);
+    }
+  }
+  
+  h1 {
+    margin-bottom: var(--space-md);
+    color: var(--color-ocean);
+  }
+</style>

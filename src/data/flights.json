@@ -1,0 +1,102 @@
+[
+  {
+    "direction": "outbound",
+    "segments": [
+      {
+        "from": "Amsterdam",
+        "to": "Tasmania",
+        "departLocal": "17:00",
+        "arriveLocal": "16:30",
+        "airline": "China Southern",
+        "flightNo": "CZ...",
+        "duration": "24h",
+        "date": "2026-12-15"
+      },
+      {
+        "from": "Amsterdam",
+        "to": "Tasmania",
+        "departLocal": "17:00",
+        "arriveLocal": "16:30",
+        "airline": "China Southern",
+        "flightNo": "CZ...",
+        "duration": "24h",
+        "date": "2026-12-17"
+      },
+      {
+        "from": "Amsterdam",
+        "to": "Tasmania",
+        "departLocal": "17:00",
+        "arriveLocal": "16:30",
+        "airline": "China Southern",
+        "flightNo": "CZ...",
+        "duration": "24h",
+        "date": "2026-12-17"
+      }
+    ]
+  },
+  {
+    "direction": "return",
+    "segments": [
+      {
+        "from": "Tasmania",
+        "to": "Amsterdam",
+        "departLocal": "10:00",
+        "arriveLocal": "20:00",
+        "airline": "China Southern",
+        "flightNo": "CZ...",
+        "duration": "24h",
+        "date": "2026-12-23"
+      },
+      {
+        "from": "Tasmania",
+        "to": "Amsterdam",
+        "departLocal": "10:00",
+        "arriveLocal": "20:00",
+        "airline": "China Southern",
+        "flightNo": "CZ...",
+        "duration": "24h",
+        "date": "2026-12-23"
+      },
+      {
+        "from": "Tasmania",
+        "to": "Amsterdam",
+        "departLocal": "10:00",
+        "arriveLocal": "20:00",
+        "airline": "China Southern",
+        "flightNo": "CZ...",
+        "duration": "24h",
+        "date": "2026-12-29"
+      },
+      {
+        "from": "Tasmania",
+        "to": "Amsterdam",
+        "departLocal": "10:00",
+        "arriveLocal": "20:00",
+        "airline": "China Southern",
+        "flightNo": "CZ...",
+        "duration": "24h",
+        "date": "2026-12-30"
+      },
+      {
+        "from": "Tasmania",
+        "to": "Amsterdam",
+        "departLocal": "10:00",
+        "arriveLocal": "20:00",
+        "airline": "China Southern",
+        "flightNo": "CZ...",
+        "duration": "24h",
+        "date": "2026-01-04"
+      },
+      {
+        "from": "Tasmania",
+        "to": "Amsterdam",
+        "departLocal": "10:00",
+        "arriveLocal": "20:00",
+        "airline": "China Southern",
+        "flightNo": "CZ...",
+        "duration": "24h",
+        "date": "2026-01-05"
+      }
+    ]
+  }
+]

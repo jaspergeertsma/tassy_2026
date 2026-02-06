@@ -1,0 +1,128 @@
+
+---
+import type { ItineraryDay } from '../types';
+
+interface Props {
+  day: ItineraryDay;
+}
+
+const { day } = Astro.props;
+
+// Date formatting
+const dateObj = new Date(day.date);
+const dayName = dateObj.toLocaleDateString('nl-NL', { weekday: 'short' });
+const dateFormatted = dateObj.toLocaleDateString('nl-NL', { day: 'numeric', month: 'short' });
+---
+
+<article class="day-card" id={`day-${day.dayNumber}`}>
+  <div class="date-col">
+    <span class="day-name">{dayName}</span>
+    <span class="day-num">{dateFormatted}</span>
+  </div>
+  <div class="content-col">
+    <header>
+      <h3>Dag {day.dayNumber}: {day.title}</h3>
+      <span class="region-badge">{day.region}</span>
+    </header>
+    
+    <div class="details">
+       {day.notes && <p class="notes">{day.notes}</p>}
+       
+       {day.activities.length > 0 && (
+         <ul class="activities">
+           {day.activities.map(act => <li>{act}</li>)}
+         </ul>
+       )}
+
+       {/* Drive info if available (mocked/parsed) */}
+       {/* <div class="drive-info">🚗 2u 30m • 145km</div> */}
+    </div>
+  </div>
+</article>
+
+<style>
+  .day-card {
+    display: flex;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: var(--space-md);
+    border-left: 4px solid var(--color-ocean);
+    transition: transform 0.2s, box-shadow 0.2s;
+    scroll-margin-top: 100px;
+  }
+  .day-card:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .date-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    text-align: center;
+    color: var(--color-text-light);
+    font-family: var(--font-mono);
+  }
+  .day-name {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+  }
+  .day-num {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+
+  .content-col {
+    flex: 1;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-xs);
+  }
+  
+  h3 {
+    font-family: var(--font-body); /* More readable for list */
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--color-forest-dark);
+    margin: 0;
+  }
+
+  .region-badge {
+    background: var(--color-mist);
+    color: var(--color-text-light);
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    margin-left: var(--space-xs);
+  }
+
+  .notes {
+    color: var(--color-text-main);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: var(--space-xs);
+  }
+
+  .activities {
+    padding-left: 1.2rem;
+    margin-top: var(--space-xs);
+    color: var(--color-forest);
+    font-size: 0.9rem;
+  }
+  .activities li {
+    margin-bottom: 0.25rem;
+  }
+</style>

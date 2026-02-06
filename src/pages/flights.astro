@@ -1,0 +1,78 @@
+
+---
+import Layout from '../layouts/Layout.astro';
+import FlightSegment from '../components/FlightSegment.astro';
+import flightsData from '../data/flights.json';
+import type { Flight } from '../types';
+
+const flights: Flight[] = flightsData as Flight[];
+---
+
+<Layout title="Tasmanië 2026 - Vliegreis">
+  <main class="flights-page">
+    <div class="container container-flights">
+      <h1>Vliegreis</h1>
+      
+      {flights.length > 0 ? flights.map((trip) => (
+        <section class="trip-section">
+          <h2>{trip.direction === 'outbound' ? 'Heenreis' : 'Terugreis'}</h2>
+          <div class="flight-timeline">
+            {trip.segments.map((segment, index) => (
+              <FlightSegment segment={segment} isLast={index === trip.segments.length - 1} />
+            ))}
+          </div>
+        </section>
+      )) : (
+        <p class="empty-state">Geen vluchtinformatie gevonden. Controleer de data.</p>
+      )}
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .flights-page {
+    background: var(--color-mist);
+    min-height: 100vh;
+    padding: var(--space-xl) 0;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    color: var(--color-ocean);
+  }
+
+  .container-flights {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .trip-section {
+    background: white;
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--space-lg);
+    position: relative;
+    border: 1px solid var(--color-mist);
+  }
+
+  h2 {
+    margin-bottom: var(--space-md);
+    color: var(--color-forest);
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--color-sandstone);
+    display: inline-block;
+    padding-bottom: var(--space-xs);
+  }
+
+  .flight-timeline {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .empty-state {
+    text-align: center;
+    color: var(--color-text-light);
+  }
+</style>
