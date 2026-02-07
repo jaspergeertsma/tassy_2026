@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import RouteMap from './RouteMap';
 import { parseRoutesFromHTML } from '../lib/routeParser';
 import { geocodeAddresses, clearGeocodeCache } from '../lib/geocoding';
+import { getPath } from '../utils';
 import type { Route } from '../lib/routeParser';
 import type { GeocodedLocation } from '../lib/geocoding';
 
@@ -19,7 +20,7 @@ export default function RouteMapLoader() {
         async function loadAndGeocodeRoutes() {
             try {
                 // Fetch HTML file
-                const response = await fetch('/Blad4.html');
+                const response = await fetch(getPath('/Blad4.html'));
                 if (!response.ok) {
                     throw new Error('Failed to load routes data');
                 }
