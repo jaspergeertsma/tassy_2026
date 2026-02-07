@@ -21,6 +21,7 @@ export default function RouteMap({ routes, geocodedLocations }: RouteMapProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [routingProgress, setRoutingProgress] = useState({ current: 0, total: 0 });
   const [leafletLoaded, setLeafletLoaded] = useState(false);
+  const [totalStats, setTotalStats] = useState({ distance: 0, duration: 0 });
 
   useEffect(() => {
     // Dynamically import Leaflet only on client side
@@ -67,6 +68,8 @@ export default function RouteMap({ routes, geocodedLocations }: RouteMapProps) {
       });
 
       const allLatLngs: any[] = [];
+      let totalDistance = 0;
+      let totalDuration = 0;
 
       // Count total routes for progress
       setRoutingProgress({ current: 0, total: routes.length });
@@ -124,11 +127,23 @@ export default function RouteMap({ routes, geocodedLocations }: RouteMapProps) {
             })
             .join(' → ');
 
-          // Add popup to route with trip information
+          // Format distance and duration
+          const distanceKm = routedPath ? (routedPath.distance / 1000).toFixed(1) : '?';
+          const durationHours = routedPath ? Math.floor(routedPath.duration / 3600) : 0;
+          const durationMinutes = routedPath ? Math.floor((routedPath.duration % 3600) / 60) : 0;
+          const durationText = durationHours > 0
+            ? `${durationHours}u ${durationMinutes}m`
+            : `${durationMinutes}m`;
+
+          // Add popup to route with trip information including distance and duration
           polyline.bindPopup(
             `<div class="route-popup">
               <div class="route-type">${route.type}</div>
               <div class="route-name">${routeName}</div>
+              <div class="route-stats">
+                <span class="route-stat">📏 ${distanceKm} km</span>
+                <span class="route-stat">⏱️ ${durationText}</span>
+              </div>
             </div>`,
             {
               className: 'themed-popup route-themed-popup',
@@ -146,6 +161,12 @@ export default function RouteMap({ routes, geocodedLocations }: RouteMapProps) {
             layer.setStyle({ weight, opacity: 0.8 });
           });
 
+          // Add to totals
+          if (routedPath) {
+            totalDistance += routedPath.distance;
+            totalDuration += routedPath.duration;
+          }
+
           // Small delay to respect OSRM rate limits
           if (routeIndex < routes.length - 1) {
             await new Promise(resolve => setTimeout(resolve, 500));
@@ -160,6 +181,9 @@ export default function RouteMap({ routes, geocodedLocations }: RouteMapProps) {
         const bounds = L.latLngBounds(allLatLngs);
         map.fitBounds(bounds, { padding: [50, 50] as [number, number] });
       }
+
+      // Update total stats
+      setTotalStats({ distance: totalDistance, duration: totalDuration });
 
       setIsLoading(false);
     }
@@ -190,6 +214,21 @@ export default function RouteMap({ routes, geocodedLocations }: RouteMapProps) {
           <span>Subroute</span>
         </div>
       </div>
+
+      {/* Total Stats */}
+      {!isLoading && totalStats.distance > 0 && (
+        <div className="map-stats">
+          <div className="stats-title">Totaal</div>
+          <div className="stats-item">
+            <span className="stats-icon">📏</span>
+            <span className="stats-value">{(totalStats.distance / 1000).toFixed(0)} km</span>
+          </div>
+          <div className="stats-item">
+            <span className="stats-icon">⏱️</span>
+            <span className="stats-value">{Math.floor(totalStats.duration / 3600)}u {Math.floor((totalStats.duration % 3600) / 60)}m</span>
+          </div>
+        </div>
+      )}
 
       {isLoading && (
         <div className="map-loading">
@@ -240,6 +279,49 @@ export default function RouteMap({ routes, geocodedLocations }: RouteMapProps) {
           width: 30px;
           height: 3px;
           border-radius: 2px;
+        }
+
+        .map-stats {
+          position: absolute;
+          bottom: 20px;
+          left: 20px;
+          background: rgba(31, 29, 27, 0.95);
+          border: 1px solid rgba(234, 230, 221, 0.2);
+          border-radius: 4px;
+          padding: 12px 16px;
+          font-family: 'Lato', sans-serif;
+          color: #EAE6DD;
+          font-size: 0.9rem;
+          z-index: 1000;
+          backdrop-filter: blur(8px);
+          min-width: 140px;
+        }
+
+        .stats-title {
+          font-family: 'Barlow Condensed', sans-serif;
+          font-size: 0.75rem;
+          text-transform: uppercase;
+          letter-spacing: 0.15em;
+          color: #D4A03D;
+          margin-bottom: 8px;
+          font-weight: 600;
+        }
+
+        .stats-item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          margin: 6px 0;
+        }
+
+        .stats-icon {
+          font-size: 1rem;
+        }
+
+        .stats-value {
+          font-family: 'Barlow Condensed', sans-serif;
+          font-size: 1.1rem;
+          font-weight: 500;
         }
 
         .map-loading {
@@ -317,6 +399,24 @@ export default function RouteMap({ routes, geocodedLocations }: RouteMapProps) {
           font-size: 0.9rem;
           color: #EAE6DD;
           line-height: 1.4;
+          margin-bottom: 0.5rem;
+        }
+
+        :global(.route-popup .route-stats) {
+          display: flex;
+          gap: 12px;
+          margin-top: 0.5rem;
+          padding-top: 0.5rem;
+          border-top: 1px solid rgba(234, 230, 221, 0.2);
+        }
+
+        :global(.route-popup .route-stat) {
+          font-family: 'Lato', sans-serif;
+          font-size: 0.85rem;
+          color: #EAE6DD;
+          display: flex;
+          align-items: center;
+          gap: 4px;
         }
 
         :global(.route-themed-popup .leaflet-popup-content-wrapper) {
