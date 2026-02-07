@@ -15,7 +15,7 @@ const dayDate = dateObj.toLocaleDateString('nl-NL', { day: 'numeric', month: 'lo
 const hasImages = day.images && day.images.length > 0;
 ---
 
-<div class={`day-card scroll-reveal ${hasImages ? 'has-images' : ''}`} data-region={day.region}>
+<article class={`day-card scroll-reveal ${hasImages ? 'has-images' : ''}`} data-region={day.region} id={`day-${day.dayNumber}`}>
   <div class="date-col">
     <span class="day-number">DAG {day.dayNumber}</span>
     <span class="day-name">{dayName}</span>
