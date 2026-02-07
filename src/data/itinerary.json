@@ -193,7 +193,19 @@
   {
     "dayNumber": 10,
     "date": "2026-12-25",
-    "title": "Cygnet dag 2",
+    "title": "Cygnet dag 2 - Kerst",
+    "region": "Cygnet",
+    "locations": [
+      "Cygnet"
+    ],
+    "activities": [],
+    "notes": "Kerst",
+    "images": []
+  },
+  {
+    "dayNumber": 11,
+    "date": "2026-12-26",
+    "title": "Cygnet dag 3",
     "region": "Cygnet",
     "locations": [
       "Cygnet"
@@ -209,18 +221,6 @@
       "/tassy_2026/images/salamanca-market-book-cover.jpg",
       "/tassy_2026/images/laura-barry-HxjKuSna5Eo-unsplash.jpg"
     ]
-  },
-  {
-    "dayNumber": 11,
-    "date": "2026-12-26",
-    "title": "Cygnet dag 3",
-    "region": "Cygnet",
-    "locations": [
-      "Cygnet"
-    ],
-    "activities": [],
-    "notes": "",
-    "images": []
   },
   {
     "dayNumber": 12,
@@ -247,7 +247,7 @@
   {
     "dayNumber": 13,
     "date": "2026-12-28",
-    "title": "Cygnet dag 5",
+    "title": "Cygnet dag 5 - Boxingday holiday",
     "region": "Cygnet",
     "locations": [
       "Cygnet"
