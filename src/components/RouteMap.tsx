@@ -116,6 +116,25 @@ export default function RouteMap({ routes, geocodedLocations }: RouteMapProps) {
             lineJoin: 'round' as const,
           }).addTo(map);
 
+          // Create route name from waypoints
+          const routeName = route.addresses
+            .map(addr => {
+              const loc = geocodedLocations.get(addr);
+              return loc ? loc.placeName : addr.split(',')[0];
+            })
+            .join(' → ');
+
+          // Add popup to route with trip information
+          polyline.bindPopup(
+            `<div class="route-popup">
+              <div class="route-type">${route.type}</div>
+              <div class="route-name">${routeName}</div>
+            </div>`,
+            {
+              className: 'themed-popup route-themed-popup',
+            }
+          );
+
           // Hover effect
           polyline.on('mouseover', (e: any) => {
             const layer = e.target;
@@ -276,6 +295,34 @@ export default function RouteMap({ routes, geocodedLocations }: RouteMapProps) {
           text-transform: uppercase;
           letter-spacing: 0.05em;
           color: #D4A03D;
+        }
+
+        /* Route popup styling */
+        :global(.route-popup) {
+          min-width: 200px;
+        }
+
+        :global(.route-popup .route-type) {
+          font-family: 'Barlow Condensed', sans-serif;
+          font-size: 0.75rem;
+          text-transform: uppercase;
+          letter-spacing: 0.15em;
+          color: #D4A03D;
+          margin-bottom: 0.25rem;
+          font-weight: 600;
+        }
+
+        :global(.route-popup .route-name) {
+          font-family: 'Lato', sans-serif;
+          font-size: 0.9rem;
+          color: #EAE6DD;
+          line-height: 1.4;
+        }
+
+        :global(.route-themed-popup .leaflet-popup-content-wrapper) {
+          background: rgba(31, 29, 27, 0.98);
+          border: 2px solid rgba(212, 160, 61, 0.7);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
         }
       `}</style>
     </div>
