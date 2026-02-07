@@ -76,6 +76,70 @@ const days = itineraryData;
       }
     });
   }
+
+  // Scroll Spy & Smooth Scroll
+  const tocLinks = document.querySelectorAll('.toc-link');
+  const dayElements = document.querySelectorAll('[id^="day-"]');
+
+  // Smooth scroll on sidebar click
+  tocLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      
+      if (targetElement) {
+        const headerOffset = 100; // Offset for sticky header
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  // Scroll spy to highlight active item
+  function updateActiveLink() {
+    const scrollPos = window.scrollY + 150; // Offset for header
+
+    let currentDay = null;
+
+    dayElements.forEach(day => {
+      const dayTop = day.offsetTop;
+      const dayBottom = dayTop + day.offsetHeight;
+
+      if (scrollPos >= dayTop && scrollPos < dayBottom) {
+        currentDay = day.id;
+      }
+    });
+
+    // Update active class
+    tocLinks.forEach(link => {
+      const href = link.getAttribute('href').substring(1);
+      if (href === currentDay) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
+
+  // Run on scroll with throttle
+  let scrollTimeout;
+  window.addEventListener('scroll', () => {
+    if (scrollTimeout) {
+      window.cancelAnimationFrame(scrollTimeout);
+    }
+    scrollTimeout = window.requestAnimationFrame(() => {
+      updateActiveLink();
+    });
+  });
+
+  // Initial check
+  updateActiveLink();
 </script>
 
 <style>
@@ -149,6 +213,24 @@ const days = itineraryData;
   .toc-link:hover {
     color: var(--color-accent-gold);
     transform: translateX(4px);
+  }
+
+  .toc-link.active {
+    color: var(--color-accent-gold);
+    background: rgba(212, 160, 61, 0.1);
+    border-left: 3px solid var(--color-accent-gold);
+    padding-left: 0.75rem;
+    margin-left: -0.75rem;
+  }
+
+  .toc-link.active .day-num {
+    color: var(--color-accent-gold);
+    font-weight: 600;
+  }
+
+  .toc-link.active .day-label {
+    color: var(--color-text-cream);
+    font-weight: 500;
   }
   
   .day-num { color: var(--color-accent-blue); font-family: var(--font-mono); }
