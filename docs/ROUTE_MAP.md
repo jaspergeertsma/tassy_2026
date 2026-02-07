@@ -1,26 +1,36 @@
 # Route Map Feature
 
-Deze feature toont een interactieve kaart met alle routes door Tasmanië.
+Deze feature toont een interactieve kaart met alle routes door Tasmanië. Routes volgen **echte wegen** via OSRM routing.
 
 ## Bestanden
 
-- `public/blad4.html` - HTML export van routes spreadsheet (Soort route + Adressen)
+- `public/routes.html` - HTML export van routes spreadsheet (Soort route + Adressen)
 - `src/pages/route.astro` - Route pagina
 - `src/components/RouteMap.tsx` - React component voor de kaart
 - `src/components/RouteMapLoader.tsx` - Data loading en geocoding
 - `src/lib/routeParser.ts` - Parser voor HTML routes data
 - `src/lib/geocoding.ts` - Geocoding met localStorage caching
+- `src/lib/routing.ts` - OSRM road routing
 
 ## Hoe werkt het?
 
-1. **Data parsing**: `routeParser.ts` leest `blad4.html` en parseert de routes
+1. **Data parsing**: `routeParser.ts` leest `routes.html` en parseert de routes
 2. **Geocoding**: `geocoding.ts` zet adressen om naar coördinaten via Nominatim API
-3. **Caching**: Geocoding resultaten worden opgeslagen in localStorage (30 dagen TTL)
-4. **Rendering**: Leaflet kaart met dark theme matching de website stijl
+3. **Routing**: `routing.ts` haalt routepaden op via OSRM die de echte wegen volgen
+4. **Caching**: Geocoding resultaten worden opgeslagen in localStorage (30 dagen TTL)
+5. **Rendering**: Leaflet kaart met dark theme matching de website stijl
+
+## Road Routing
+
+Routes worden niet als rechte lijnen getekend, maar volgen echte wegen via OSRM (Open Source Routing Machine):
+- Gebruikt de publieke OSRM demo server
+- Gratis, geen API key vereist
+- Rate limiting: 500ms tussen requests
+- Fallback naar rechte lijn als routing faalt
 
 ## Routes Data Format
 
-Het `blad4.html` bestand heeft deze structuur:
+Het `routes.html` bestand heeft deze structuur:
 
 ```html
 <table>
@@ -84,9 +94,9 @@ Nominatim API heeft rate limits. De code gebruikt:
 
 ## Routes bijwerken
 
-1. Update `public/blad4.html` met nieuwe routes
+1. Update `public/routes.html` met nieuwe routes
 2. Clear de cache (zie hierboven)
-3. Refresh de pagina - nieuwe routes worden automatisch geocoded en gecached
+3. Refresh de pagina - nieuwe routes worden automatisch geocoded en gerouted
 
 ## Deployment (GitHub Pages / Static)
 

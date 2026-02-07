@@ -20,7 +20,7 @@ export default function RouteMapLoader() {
         async function loadAndGeocodeRoutes() {
             try {
                 // Fetch HTML file
-                const response = await fetch(getPath('/Blad4.html'));
+                const response = await fetch(getPath('/routes.html'));
                 if (!response.ok) {
                     throw new Error('Failed to load routes data');
                 }

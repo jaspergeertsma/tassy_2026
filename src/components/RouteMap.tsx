@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Route } from '../lib/routeParser';
 import type { GeocodedLocation } from '../lib/geocoding';
+import { getRoutedPath } from '../lib/routing';
 
 interface RouteMapProps {
   routes: Route[];
@@ -18,6 +19,7 @@ export default function RouteMap({ routes, geocodedLocations }: RouteMapProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<any>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [routingProgress, setRoutingProgress] = useState({ current: 0, total: 0 });
   const [leafletLoaded, setLeafletLoaded] = useState(false);
 
   useEffect(() => {
@@ -66,24 +68,27 @@ export default function RouteMap({ routes, geocodedLocations }: RouteMapProps) {
 
       const allLatLngs: any[] = [];
 
-      // Plot routes
-      routes.forEach((route) => {
-        const routeCoords: any[] = [];
+      // Count total routes for progress
+      setRoutingProgress({ current: 0, total: routes.length });
 
-        // Get coordinates for each address in the route
+      // Plot routes with road routing
+      for (let routeIndex = 0; routeIndex < routes.length; routeIndex++) {
+        const route = routes[routeIndex];
+        const waypoints: { lat: number; lng: number }[] = [];
+
+        // Collect waypoints for this route
         route.addresses.forEach((address) => {
           const location = geocodedLocations.get(address);
           if (location) {
-            const latLng = L.latLng(location.lat, location.lng);
-            routeCoords.push(latLng);
-            allLatLngs.push(latLng);
+            waypoints.push({ lat: location.lat, lng: location.lng });
+            allLatLngs.push(L.latLng(location.lat, location.lng));
 
             // Add marker with popup
-            const marker = L.marker(latLng, { icon: customIcon }).addTo(map);
+            const marker = L.marker([location.lat, location.lng], { icon: customIcon }).addTo(map);
             marker.bindPopup(
               `<div class="map-popup">
-              <strong>${location.placeName}</strong>
-            </div>`,
+                <strong>${location.placeName}</strong>
+              </div>`,
               {
                 className: 'themed-popup',
               }
@@ -91,12 +96,19 @@ export default function RouteMap({ routes, geocodedLocations }: RouteMapProps) {
           }
         });
 
-        // Draw polyline if we have at least 2 points
-        if (routeCoords.length >= 2) {
+        // Get routed path along roads if we have at least 2 waypoints
+        if (waypoints.length >= 2) {
+          const routedPath = await getRoutedPath(waypoints);
+
           const color = route.type === 'Hoofdroute' ? COLORS.hoofdroute : COLORS.subroute;
           const weight = route.type === 'Hoofdroute' ? 4 : 3;
 
-          const polyline = L.polyline(routeCoords, {
+          // Use routed path if available, otherwise fall back to straight line
+          const pathCoords = routedPath
+            ? routedPath.coordinates.map(c => [c.lat, c.lng] as [number, number])
+            : waypoints.map(w => [w.lat, w.lng] as [number, number]);
+
+          const polyline = L.polyline(pathCoords, {
             color,
             weight,
             opacity: 0.8,
@@ -114,8 +126,15 @@ export default function RouteMap({ routes, geocodedLocations }: RouteMapProps) {
             const layer = e.target;
             layer.setStyle({ weight, opacity: 0.8 });
           });
+
+          // Small delay to respect OSRM rate limits
+          if (routeIndex < routes.length - 1) {
+            await new Promise(resolve => setTimeout(resolve, 500));
+          }
         }
-      });
+
+        setRoutingProgress({ current: routeIndex + 1, total: routes.length });
+      }
 
       // Fit bounds to show all routes
       if (allLatLngs.length > 0) {
@@ -155,7 +174,12 @@ export default function RouteMap({ routes, geocodedLocations }: RouteMapProps) {
 
       {isLoading && (
         <div className="map-loading">
-          <p>Kaart laden...</p>
+          <p>Routes berekenen...</p>
+          {routingProgress.total > 0 && (
+            <p style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>
+              {routingProgress.current} / {routingProgress.total}
+            </p>
+          )}
         </div>
       )}
 
@@ -213,6 +237,7 @@ export default function RouteMap({ routes, geocodedLocations }: RouteMapProps) {
           font-size: 1.2rem;
           text-transform: uppercase;
           letter-spacing: 0.1em;
+          text-align: center;
         }
 
         /* Custom marker styling */
