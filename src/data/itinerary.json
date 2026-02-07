@@ -14,7 +14,7 @@
     ]
   },
   {
-    "dayNumber": 1,
+    "dayNumber": 2,
     "date": "2026-12-17",
     "title": "Aankomst Tasmanië",
     "region": "Tasmanië",
@@ -93,7 +93,7 @@
         "url": "https://www.discovertasmania.com.au/regions/east-coast/bay-of-fires/"
       }
     ],
-    "notes": "Mooi kustroute waar we verschillende stranden en baaien kunnen aandoen 🏖️ Met onder andere Binalong Bay, tot aan Bay of fires en weer terug. +- 350 kilometer 🚐",
+    "notes": "Mooi kustroute waar we verschillende stranden en baaien kunnen aandoen 🏖️Helemaal tot aan Bay of fires en weer terug. +- 350 kilometer 🚐",
     "images": [
       "/tassy_2026/images/bay_of_fires.jpg",
       "/tassy_2026/images/matt-palmer-Hdkca4MmA58-unsplash.jpg",
@@ -108,8 +108,13 @@
     "locations": [
       "Campbell town"
     ],
-    "activities": [],
-    "notes": "",
+    "activities": [
+      {
+        "name": "Cradle Mountain",
+        "url": ""
+      }
+    ],
+    "notes": "Lange autorit van 2,5 uur naar hele grote bergen ⛰️⛰️",
     "images": []
   },
   {
@@ -193,19 +198,7 @@
   {
     "dayNumber": 10,
     "date": "2026-12-25",
-    "title": "Cygnet dag 2 - Kerst",
-    "region": "Cygnet",
-    "locations": [
-      "Cygnet"
-    ],
-    "activities": [],
-    "notes": "Kerst",
-    "images": []
-  },
-  {
-    "dayNumber": 11,
-    "date": "2026-12-26",
-    "title": "Cygnet dag 3",
+    "title": "Cygnet dag 2",
     "region": "Cygnet",
     "locations": [
       "Cygnet"
@@ -223,6 +216,23 @@
     ]
   },
   {
+    "dayNumber": 11,
+    "date": "2026-12-26",
+    "title": "Cygnet dag 3",
+    "region": "Cygnet",
+    "locations": [
+      "Cygnet"
+    ],
+    "activities": [
+      {
+        "name": "Bruny Island",
+        "url": ""
+      }
+    ],
+    "notes": "KERST! Rondrit in 75km naar Bruny Island. Natuur, prachtige baaien, The Neck 🏝️",
+    "images": []
+  },
+  {
     "dayNumber": 12,
     "date": "2026-12-27",
     "title": "Cygnet dag 4",
@@ -232,11 +242,11 @@
     ],
     "activities": [
       {
-        "name": "Tasman Peninsula Cruise (Bruny Island)",
+        "name": "Tasman Peninsula Cruise",
         "url": "https://www.viator.com/en-AU/tours/Port-Arthur/3-Hour-Tasman-Peninsula-Wilderness-Cruise-from-Port-Arthur/d32553-5500P8"
       }
     ],
-    "notes": "Het prachtige Tasman Peninsula is een geweldig mooi schiereiland met mooi baaien, scherpe rotswanden en het historische Port Arthur 🚢. In 1,5 uur rijden is het mogelijk The Neck 🦅, Port Arthur en White Beach ⛱️ te bereiken. Het is ook weer 1,5 uur terug. Dat dan weer wel.",
+    "notes": "Het prachtige Tasman Peninsula is een geweldig mooi schiereiland met mooi baaien, scherpe rotswanden en het historische Port Arthur 🚢. In 1,5 uur rijden is het mogelijk The Eagle's Neck 🦅, Port Arthur en White Beach ⛱️ te bereiken. Het is ook weer 1,5 uur terug. Dat dan weer wel.",
     "images": [
       "/tassy_2026/images/eaglehawkneck.jpg",
       "/tassy_2026/images/eaglehawkneck2.jpg",
@@ -258,7 +268,7 @@
         "url": "https://tahuneadventures.com.au/tahune-airwalk/"
       }
     ],
-    "notes": "Voor de fanatiekelingen is er nog de mogelijkheid om een avontuurlijke bruggentoch bij Tahuna Airwalk Adventures te doen.🥾",
+    "notes": "BOXING HOLIDAY. Voor de fanatiekelingen is er nog de mogelijkheid om een avontuurlijke bruggentoch bij Tahuna Airwalk Adventures te doen.🥾",
     "images": [
       "/tassy_2026/images/tahune-airwalks.jpg",
       "/tassy_2026/images/Tahune-Airwalk-Supplied-Courtesy-of-Forestry-Tasmania-129788.jpg"
@@ -366,7 +376,7 @@
   },
   {
     "dayNumber": 17,
-    "date": "2026-12-01",
+    "date": "2027-01-01",
     "title": "Northwest dag 2",
     "region": "Northwest",
     "locations": [
@@ -383,7 +393,7 @@
   },
   {
     "dayNumber": 18,
-    "date": "2026-01-02",
+    "date": "2027-01-02",
     "title": "Northwest dag 3",
     "region": "Northwest",
     "locations": [
@@ -395,12 +405,12 @@
         "url": ""
       }
     ],
-    "notes": "",
+    "notes": "Chillen in Woolnorth",
     "images": []
   },
   {
     "dayNumber": 19,
-    "date": "2026-01-03",
+    "date": "2027-01-03",
     "title": "Northwest dag 4",
     "region": "Northwest",
     "locations": [
@@ -412,12 +422,12 @@
         "url": ""
       }
     ],
-    "notes": "",
+    "notes": "Chillen in Woolnorth",
     "images": []
   },
   {
     "dayNumber": 20,
-    "date": "2026-01-04",
+    "date": "2027-01-04",
     "title": "Vertrekdag",
     "region": "Tasmanië",
     "locations": [
@@ -431,7 +441,7 @@
   },
   {
     "dayNumber": 21,
-    "date": "2026-01-05",
+    "date": "2027-01-05",
     "title": "Aankomst",
     "region": "Nederland",
     "locations": [
