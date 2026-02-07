@@ -46,12 +46,19 @@ const hasImages = day.images && day.images.length > 0;
       {day.activities.length > 0 && (
         <div class="activities-block">
           <ul class="activities-list">
-            {day.activities.map(act => (
-              <li>
-                <span class="bullet">+</span>
-                {act}
-              </li>
-            ))}
+            {day.activities.map(act => {
+              const name = typeof act === 'string' ? act : act.name;
+              const url = typeof act === 'string' ? null : act.url;
+              return (
+                <li>
+                  {url ? (
+                    <a href={url} target="_blank" rel="noopener noreferrer" class="activity-link">{name}</a>
+                  ) : (
+                    <span>{name}</span>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}
@@ -228,6 +235,18 @@ const hasImages = day.images && day.images.length > 0;
     line-height: 1.5;
   }
   
+  .activity-link {
+    color: var(--color-text-cream);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--color-accent-gold);
+    transition: all 0.2s;
+  }
+
+  .activity-link:hover {
+    color: var(--color-accent-gold);
+    border-bottom-style: solid;
+  }
+
   .drive-info {
     margin-top: 0.5rem;
     font-family: var(--font-mono);

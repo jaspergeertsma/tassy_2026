@@ -5,7 +5,7 @@ export interface ItineraryDay {
     title: string;
     region: string;
     locations: string[];
-    activities: string[];
+    activities: ({ name: string; url?: string } | string)[];
     drive?: {
         km: number;
         time: string;

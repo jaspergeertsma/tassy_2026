@@ -46,7 +46,10 @@
       "Campbell town"
     ],
     "activities": [
-      "Wineglass Bay in Freycinet (oostkust)"
+      {
+        "name": "Wineglass Bay in Freycinet (oostkust)",
+        "url": "https://www.discovertasmania.com.au/regions/east-coast/wineglass-bay/"
+      }
     ],
     "notes": "Tocht van 112 kilometer naar het prachtige Freycinet met eventueel een wandeling van 6km (3 uur) naar Wineglass Bay 🍷",
     "images": [
@@ -62,7 +65,10 @@
       "Campbell town"
     ],
     "activities": [
-      "Devils (en andere dieren) kijken in Bonorong Wildlife Sanctuary"
+      {
+        "name": "Devils (en andere dieren) kijken in Bonorong Wildlife Sanctuary",
+        "url": "https://www.bonorong.com.au"
+      }
     ],
     "notes": "We rijden een uur naar het zuiden, komen door Bagdad en daarna hebben we een meet and greet met Tasmania's Finest wildlife 🐨 ",
     "images": [
@@ -78,7 +84,10 @@
       "Campbell town"
     ],
     "activities": [
-      "Bay of fires (oostkust)"
+      {
+        "name": "Bay of fires (oostkust)",
+        "url": "https://www.discovertasmania.com.au/regions/east-coast/bay-of-fires/"
+      }
     ],
     "notes": "Mooi kustroute waar we verschillende stranden en baaien kunnen aandoen 🏖️Helemaal tot aan Bay of fires en weer terug. +- 350 kilometer 🚐",
     "images": [
@@ -130,10 +139,15 @@
       "Tussenstop"
     ],
     "activities": [
-      "Mount Wellington (uitzicht op Hobart)"
+      {
+        "name": "Mount Wellington (uitzicht op Hobart)",
+        "url": "https://www.discovertasmania.com.au/regions/hobart-and-south/mount-wellington/"
+      }
     ],
     "notes": "Er is tijdens de rit naar het zuiden ongetwijfeld nog tijd voor een mooie stop. 😎",
-    "images": []
+    "images": [
+      "/tassy_2026/images/stephen-mabbs-_DlwNohdZ4c-unsplash.jpg"
+    ]
   },
   {
     "dayNumber": 8,
@@ -158,7 +172,10 @@
       "Cygnet"
     ],
     "activities": [
-      "Hastings caves & thermal springs (grotten + zwemmen in thermal pool)"
+      {
+        "name": "Hastings caves & thermal springs (grotten + zwemmen in thermal pool)",
+        "url": "https://www.discovertasmania.com.au/things-to-do/nature-and-wildlife/hastingscavesandthermalsprings/"
+      }
     ],
     "notes": "Op 77 kilometer rijden komen we bij het prachtige Hastings Caves 🏔️ en de heerlijke thermal pool 💦En er is ook een mooi wandelpad \"The Platypus Walk\" (10 min) 🦤",
     "images": [
@@ -174,7 +191,10 @@
       "Cygnet"
     ],
     "activities": [
-      "Salamanca Market (Hobart, op zaterdagen)"
+      {
+        "name": "Salamanca Market (Hobart, op zaterdagen)",
+        "url": "https://www.salamancamarket.com.au/Home"
+      }
     ],
     "notes": "We gaan een dagje shoppen 💸 in Hobart. Op deze dag is er ook de beroemde Salamanca Market 🛒 Binnen 45 minuten staan we in het hart van de stad. 💖",
     "images": [
@@ -202,7 +222,10 @@
       "Cygnet"
     ],
     "activities": [
-      "Tasman Peninsula Cruise (Bruny Island)"
+      {
+        "name": "Tasman Peninsula Cruise (Bruny Island)",
+        "url": "https://www.viator.com/en-AU/tours/Port-Arthur/3-Hour-Tasman-Peninsula-Wilderness-Cruise-from-Port-Arthur/d32553-5500P8"
+      }
     ],
     "notes": "Het prachtige Tasman Peninsula is een geweldig mooi schiereiland met mooi baaien, scherpe rotswanden en het historische Port Arthur 🚢. In 1,5 uur rijden is het mogelijk The Eagle's Neck 🦅, Port Arthur en White Beach ⛱️ te bereiken. Het is ook weer 1,5 uur terug. Dat dan weer wel.",
     "images": []
@@ -216,7 +239,10 @@
       "Cygnet"
     ],
     "activities": [
-      "Tahune AirWalk"
+      {
+        "name": "Tahune AirWalk",
+        "url": "https://tahuneadventures.com.au/tahune-airwalk/"
+      }
     ],
     "notes": "Voor de fanatiekelingen is er nog de mogelijkheid om een avontuurlijke bruggentoch bij Tahuna Airwalk Adventures te doen.🥾",
     "images": [
@@ -244,7 +270,10 @@
       "Tussenstop"
     ],
     "activities": [
-      "Nelson falls (waterval op route naar noordwest)"
+      {
+        "name": "Nelson falls (waterval op route naar noordwest)",
+        "url": "https://parks.tas.gov.au/explore-our-parks/franklin-gordon-wild-rivers-national-park/nelson-falls"
+      }
     ],
     "notes": "Tijdens de lange rit 🚘 niets beters dan even de beentjes strekken bij Nelson Falls 🌊 (279km onderweg)",
     "images": []
@@ -258,7 +287,10 @@
       "Tussenstop"
     ],
     "activities": [
-      "Iron Blow lookout (op route naar noordwest)"
+      {
+        "name": "Iron Blow lookout (op route naar noordwest)",
+        "url": "https://tasmania.com/things-to-do/best-views-and-lookouts/iron-blow-lookout/"
+      }
     ],
     "notes": "En dan nog een klein stukkie verder bij Queenstown is er ook de Iron Blow  lookout. 👀 (303km onderweg)",
     "images": [
@@ -274,7 +306,10 @@
       "Tussenstop"
     ],
     "activities": [
-      "Stingray beach"
+      {
+        "name": "Stingray beach",
+        "url": ""
+      }
     ],
     "notes": "Tussenstopje na 380 kilometer op Stingray beach 🐟",
     "images": []
@@ -302,7 +337,10 @@
       "Northwest"
     ],
     "activities": [
-      "Doen waar we zin in hebben"
+      {
+        "name": "Doen waar we zin in hebben",
+        "url": ""
+      }
     ],
     "notes": "Oudejaarsdag 🎇",
     "images": []
@@ -316,7 +354,10 @@
       "Northwest"
     ],
     "activities": [
-      "Doen waar we zin in hebben"
+      {
+        "name": "Doen waar we zin in hebben",
+        "url": ""
+      }
     ],
     "notes": "Nieuwjaarsdag 🥂",
     "images": []
@@ -330,7 +371,10 @@
       "Northwest"
     ],
     "activities": [
-      "Doen waar we zin in hebben"
+      {
+        "name": "Doen waar we zin in hebben",
+        "url": ""
+      }
     ],
     "notes": "",
     "images": []
@@ -344,7 +388,10 @@
       "Northwest"
     ],
     "activities": [
-      "Doen waar we zin in hebben"
+      {
+        "name": "Doen waar we zin in hebben",
+        "url": ""
+      }
     ],
     "notes": "",
     "images": []

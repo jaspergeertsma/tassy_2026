@@ -9,6 +9,7 @@
     "astro": "astro",
     "data:build": "tsx scripts/parse-xlsx-to-json.ts",
     "inspect:xlsx": "tsx scripts/inspect-xlsx.ts",
+    "inspect:uitjes": "tsx scripts/inspect-uitjes.ts",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.astro",
     "format": "prettier --write .",
     "test": "vitest run",
