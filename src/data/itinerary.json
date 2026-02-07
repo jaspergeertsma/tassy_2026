@@ -9,7 +9,9 @@
     ],
     "activities": [],
     "notes": "🛫 Op dinsdag 15 december 2026 vertrekken we rond 17.00 uur naar Amsterdam Schiphol Airport. De vlucht vertrekt ongeveer om 21:30 en we vliegen met China Southern via Guangzhou",
-    "images": []
+    "images": [
+      "/tassy_2026/images/schiphol-airport.jpg"
+    ]
   },
   {
     "dayNumber": 1,
@@ -21,7 +23,9 @@
     ],
     "activities": [],
     "notes": "🛬 We landen rond 16:30 lokale tijd in Devonport, Tasmanië! Erik pikt ons op met het busje en dan rijden we naar de eerste Airbnb",
-    "images": []
+    "images": [
+      "/tassy_2026/images/devonport-airport.jpg"
+    ]
   },
   {
     "dayNumber": 2,
@@ -89,10 +93,11 @@
         "url": "https://www.discovertasmania.com.au/regions/east-coast/bay-of-fires/"
       }
     ],
-    "notes": "Mooi kustroute waar we verschillende stranden en baaien kunnen aandoen 🏖️Helemaal tot aan Bay of fires en weer terug. +- 350 kilometer 🚐",
+    "notes": "Mooi kustroute waar we verschillende stranden en baaien kunnen aandoen 🏖️ Met onder andere Binalong Bay, tot aan Bay of fires en weer terug. +- 350 kilometer 🚐",
     "images": [
       "/tassy_2026/images/bay_of_fires.jpg",
-      "/tassy_2026/images/david-clode-3xFaGY8CjFM-unsplash.jpg"
+      "/tassy_2026/images/matt-palmer-Hdkca4MmA58-unsplash.jpg",
+      "/tassy_2026/images/binalong.jpeg"
     ]
   },
   {
@@ -231,11 +236,12 @@
         "url": "https://www.viator.com/en-AU/tours/Port-Arthur/3-Hour-Tasman-Peninsula-Wilderness-Cruise-from-Port-Arthur/d32553-5500P8"
       }
     ],
-    "notes": "Het prachtige Tasman Peninsula is een geweldig mooi schiereiland met mooi baaien, scherpe rotswanden en het historische Port Arthur 🚢. In 1,5 uur rijden is het mogelijk Eaglehawk's Neck 🦅, Port Arthur en White Beach ⛱️ te bereiken. Het is ook weer 1,5 uur terug. Dat dan weer wel.",
+    "notes": "Het prachtige Tasman Peninsula is een geweldig mooi schiereiland met mooi baaien, scherpe rotswanden en het historische Port Arthur 🚢. In 1,5 uur rijden is het mogelijk The Neck 🦅, Port Arthur en White Beach ⛱️ te bereiken. Het is ook weer 1,5 uur terug. Dat dan weer wel.",
     "images": [
       "/tassy_2026/images/eaglehawkneck.jpg",
       "/tassy_2026/images/eaglehawkneck2.jpg",
-      "/tassy_2026/images/stephen-mabbs-_DlwNohdZ4c-unsplash.jpg"
+      "/tassy_2026/images/stephen-mabbs-_DlwNohdZ4c-unsplash.jpg",
+      "/tassy_2026/images/sean-robertson-pYDR8iOj0cE-unsplash.jpg"
     ]
   },
   {
@@ -254,7 +260,8 @@
     ],
     "notes": "Voor de fanatiekelingen is er nog de mogelijkheid om een avontuurlijke bruggentoch bij Tahuna Airwalk Adventures te doen.🥾",
     "images": [
-      "/tassy_2026/images/tahune-airwalks.jpg"
+      "/tassy_2026/images/tahune-airwalks.jpg",
+      "/tassy_2026/images/Tahune-Airwalk-Supplied-Courtesy-of-Forestry-Tasmania-129788.jpg"
     ]
   },
   {
@@ -284,7 +291,9 @@
       }
     ],
     "notes": "Tijdens de lange rit 🚘 niets beters dan even de beentjes strekken bij Nelson Falls 🌊 (279km onderweg)",
-    "images": []
+    "images": [
+      "/tassy_2026/images/jordan-redshaw-V6vUX8cHjSM-unsplash.jpg"
+    ]
   },
   {
     "dayNumber": 14,
@@ -416,7 +425,9 @@
     ],
     "activities": [],
     "notes": "Vertrek met het bussie 🚐 naar het vliegveld want om 17:05 vertrekt het vliegtuig 🛫 naar Melbourne, Guangzhou ㊗️, Amsterdam. ",
-    "images": []
+    "images": [
+      "/tassy_2026/images/devonport-airport.jpg"
+    ]
   },
   {
     "dayNumber": 21,
@@ -428,6 +439,8 @@
     ],
     "activities": [],
     "notes": "🛬 Aankomst op Schiphol Airport. We zijn weer thuis 🏡, de vakantie zit er nu echt op.. Afkicken.. 🥹",
-    "images": []
+    "images": [
+      "/tassy_2026/images/schiphol-airport.jpg"
+    ]
   }
 ]
