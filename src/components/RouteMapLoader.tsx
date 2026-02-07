@@ -13,6 +13,9 @@ export default function RouteMapLoader() {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
+        // Only run on client side
+        if (typeof window === 'undefined') return;
+
         async function loadAndGeocodeRoutes() {
             try {
                 // Fetch HTML file

@@ -1,142 +1,165 @@
 import { useEffect, useRef, useState } from 'react';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
 import type { Route } from '../lib/routeParser';
 import type { GeocodedLocation } from '../lib/geocoding';
 
 interface RouteMapProps {
-    routes: Route[];
-    geocodedLocations: Map<string, GeocodedLocation>;
+  routes: Route[];
+  geocodedLocations: Map<string, GeocodedLocation>;
 }
 
 // Color scheme matching the site theme
 const COLORS = {
-    hoofdroute: '#D4A03D', // Gold accent
-    subroute: '#6B9AC4',   // Blue accent
-    marker: '#EAE6DD',     // Cream
+  hoofdroute: '#D4A03D', // Gold accent
+  subroute: '#6B9AC4',   // Blue accent
+  marker: '#EAE6DD',     // Cream
 };
 
 export default function RouteMap({ routes, geocodedLocations }: RouteMapProps) {
-    const mapContainer = useRef<HTMLDivElement>(null);
-    const mapInstance = useRef<L.Map | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
+  const mapContainer = useRef<HTMLDivElement>(null);
+  const mapInstance = useRef<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [leafletLoaded, setLeafletLoaded] = useState(false);
 
-    useEffect(() => {
-        if (!mapContainer.current || mapInstance.current) return;
+  useEffect(() => {
+    // Dynamically import Leaflet only on client side
+    async function loadLeaflet() {
+      if (typeof window === 'undefined') return;
 
-        // Initialize map centered on Tasmania
-        const map = L.map(mapContainer.current, {
-            center: [-42.0, 146.6], // Tasmania center
-            zoom: 7,
-            zoomControl: true,
-        });
+      const L = await import('leaflet');
+      await import('leaflet/dist/leaflet.css');
 
-        mapInstance.current = map;
+      setLeafletLoaded(true);
+      return L.default;
+    }
 
-        // Dark themed tiles
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-            maxZoom: 19,
-        }).addTo(map);
+    loadLeaflet();
+  }, []);
 
-        // Custom marker icon to match theme
-        const customIcon = L.divIcon({
-            className: 'custom-marker',
-            html: '<div class="marker-dot"></div>',
-            iconSize: [12, 12],
-            iconAnchor: [6, 6],
-        });
+  useEffect(() => {
+    if (!leafletLoaded || !mapContainer.current || mapInstance.current) return;
 
-        const allLatLngs: L.LatLng[] = [];
+    async function initMap() {
+      const L = (await import('leaflet')).default;
 
-        // Plot routes
-        routes.forEach((route) => {
-            const routeCoords: L.LatLng[] = [];
+      // Initialize map centered on Tasmania
+      const map = L.map(mapContainer.current!, {
+        center: [-42.0, 146.6], // Tasmania center
+        zoom: 7,
+        zoomControl: true,
+      });
 
-            // Get coordinates for each address in the route
-            route.addresses.forEach((address) => {
-                const location = geocodedLocations.get(address);
-                if (location) {
-                    const latLng = L.latLng(location.lat, location.lng);
-                    routeCoords.push(latLng);
-                    allLatLngs.push(latLng);
+      mapInstance.current = map;
 
-                    // Add marker with popup
-                    const marker = L.marker(latLng, { icon: customIcon }).addTo(map);
-                    marker.bindPopup(
-                        `<div class="map-popup">
+      // Dark themed tiles
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        maxZoom: 19,
+      }).addTo(map);
+
+      // Custom marker icon to match theme
+      const customIcon = L.divIcon({
+        className: 'custom-marker',
+        html: '<div class="marker-dot"></div>',
+        iconSize: [12, 12] as [number, number],
+        iconAnchor: [6, 6] as [number, number],
+      });
+
+      const allLatLngs: any[] = [];
+
+      // Plot routes
+      routes.forEach((route) => {
+        const routeCoords: any[] = [];
+
+        // Get coordinates for each address in the route
+        route.addresses.forEach((address) => {
+          const location = geocodedLocations.get(address);
+          if (location) {
+            const latLng = L.latLng(location.lat, location.lng);
+            routeCoords.push(latLng);
+            allLatLngs.push(latLng);
+
+            // Add marker with popup
+            const marker = L.marker(latLng, { icon: customIcon }).addTo(map);
+            marker.bindPopup(
+              `<div class="map-popup">
               <strong>${location.placeName}</strong>
             </div>`,
-                        {
-                            className: 'themed-popup',
-                        }
-                    );
-                }
-            });
-
-            // Draw polyline if we have at least 2 points
-            if (routeCoords.length >= 2) {
-                const color = route.type === 'Hoofdroute' ? COLORS.hoofdroute : COLORS.subroute;
-                const polyline = L.polyline(routeCoords, {
-                    color,
-                    weight: route.type === 'Hoofdroute' ? 4 : 3,
-                    opacity: 0.8,
-                    lineCap: 'round',
-                    lineJoin: 'round',
-                }).addTo(map);
-
-                // Hover effect
-                polyline.on('mouseover', (e) => {
-                    const layer = e.target as L.Polyline;
-                    const currentWeight = layer.options.weight || 3;
-                    layer.setStyle({ weight: currentWeight + 2, opacity: 1 });
-                });
-                polyline.on('mouseout', (e) => {
-                    const layer = e.target as L.Polyline;
-                    const currentWeight = layer.options.weight || 3;
-                    layer.setStyle({ weight: currentWeight, opacity: 0.8 });
-                });
-            }
+              {
+                className: 'themed-popup',
+              }
+            );
+          }
         });
 
-        // Fit bounds to show all routes
-        if (allLatLngs.length > 0) {
-            const bounds = L.latLngBounds(allLatLngs);
-            map.fitBounds(bounds, { padding: [50, 50] });
+        // Draw polyline if we have at least 2 points
+        if (routeCoords.length >= 2) {
+          const color = route.type === 'Hoofdroute' ? COLORS.hoofdroute : COLORS.subroute;
+          const weight = route.type === 'Hoofdroute' ? 4 : 3;
+
+          const polyline = L.polyline(routeCoords, {
+            color,
+            weight,
+            opacity: 0.8,
+            lineCap: 'round' as const,
+            lineJoin: 'round' as const,
+          }).addTo(map);
+
+          // Hover effect
+          polyline.on('mouseover', (e: any) => {
+            const layer = e.target;
+            const currentWeight = layer.options.weight || 3;
+            layer.setStyle({ weight: currentWeight + 2, opacity: 1 });
+          });
+          polyline.on('mouseout', (e: any) => {
+            const layer = e.target;
+            layer.setStyle({ weight, opacity: 0.8 });
+          });
         }
+      });
 
-        setIsLoading(false);
+      // Fit bounds to show all routes
+      if (allLatLngs.length > 0) {
+        const bounds = L.latLngBounds(allLatLngs);
+        map.fitBounds(bounds, { padding: [50, 50] as [number, number] });
+      }
 
-        // Cleanup
-        return () => {
-            map.remove();
-            mapInstance.current = null;
-        };
-    }, [routes, geocodedLocations]);
+      setIsLoading(false);
+    }
 
-    return (
-        <div className="map-wrapper">
-            <div ref={mapContainer} className="map-container" />
+    initMap();
 
-            {/* Legend */}
-            <div className="map-legend">
-                <div className="legend-item">
-                    <span className="legend-line" style={{ backgroundColor: COLORS.hoofdroute }}></span>
-                    <span>Hoofdroute</span>
-                </div>
-                <div className="legend-item">
-                    <span className="legend-line" style={{ backgroundColor: COLORS.subroute }}></span>
-                    <span>Subroute</span>
-                </div>
-            </div>
+    // Cleanup
+    return () => {
+      if (mapInstance.current) {
+        mapInstance.current.remove();
+        mapInstance.current = null;
+      }
+    };
+  }, [leafletLoaded, routes, geocodedLocations]);
 
-            {isLoading && (
-                <div className="map-loading">
-                    <p>Kaart laden...</p>
-                </div>
-            )}
+  return (
+    <div className="map-wrapper">
+      <div ref={mapContainer} className="map-container" />
 
-            <style>{`
+      {/* Legend */}
+      <div className="map-legend">
+        <div className="legend-item">
+          <span className="legend-line" style={{ backgroundColor: COLORS.hoofdroute }}></span>
+          <span>Hoofdroute</span>
+        </div>
+        <div className="legend-item">
+          <span className="legend-line" style={{ backgroundColor: COLORS.subroute }}></span>
+          <span>Subroute</span>
+        </div>
+      </div>
+
+      {isLoading && (
+        <div className="map-loading">
+          <p>Kaart laden...</p>
+        </div>
+      )}
+
+      <style>{`
         .map-wrapper {
           position: relative;
           width: 100%;
@@ -230,6 +253,6 @@ export default function RouteMap({ routes, geocodedLocations }: RouteMapProps) {
           color: #D4A03D;
         }
       `}</style>
-        </div>
-    );
+    </div>
+  );
 }
