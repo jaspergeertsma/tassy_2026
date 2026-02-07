@@ -12,7 +12,7 @@
     "images": []
   },
   {
-    "dayNumber": 2,
+    "dayNumber": 1,
     "date": "2026-12-17",
     "title": "Aankomst Tasmanië",
     "region": "Tasmanië",
@@ -24,7 +24,7 @@
     "images": []
   },
   {
-    "dayNumber": 3,
+    "dayNumber": 2,
     "date": "2026-12-17",
     "title": "Aankomst Airbnb 1",
     "region": "Tasmanië",
@@ -38,7 +38,7 @@
     ]
   },
   {
-    "dayNumber": 4,
+    "dayNumber": 3,
     "date": "2026-12-18",
     "title": "Campbell town dag 1",
     "region": "Campbell town",
@@ -54,7 +54,7 @@
     ]
   },
   {
-    "dayNumber": 5,
+    "dayNumber": 4,
     "date": "2026-12-19",
     "title": "Campbell town dag 2",
     "region": "Campbell town",
@@ -70,7 +70,7 @@
     ]
   },
   {
-    "dayNumber": 6,
+    "dayNumber": 5,
     "date": "2026-12-20",
     "title": "Campbell town dag 3",
     "region": "Campbell town",
@@ -86,7 +86,7 @@
     ]
   },
   {
-    "dayNumber": 7,
+    "dayNumber": 6,
     "date": "2026-12-21",
     "title": "Campbell town dag 4",
     "region": "Campbell town",
@@ -98,7 +98,7 @@
     "images": []
   },
   {
-    "dayNumber": 8,
+    "dayNumber": 7,
     "date": "2026-12-22",
     "title": "Campbell town dag 5",
     "region": "Campbell town",
@@ -110,7 +110,7 @@
     "images": []
   },
   {
-    "dayNumber": 9,
+    "dayNumber": 8,
     "date": "2026-12-23",
     "title": "Vertrekdag",
     "region": "Tasmanië",
@@ -122,7 +122,7 @@
     "images": []
   },
   {
-    "dayNumber": 10,
+    "dayNumber": 8,
     "date": "2026-12-23",
     "title": "Tussenstop",
     "region": "Tussenstop",
@@ -136,7 +136,7 @@
     "images": []
   },
   {
-    "dayNumber": 11,
+    "dayNumber": 8,
     "date": "2026-12-23",
     "title": "Aankomst Airbnb 2",
     "region": "Tasmanië",
@@ -150,7 +150,7 @@
     ]
   },
   {
-    "dayNumber": 12,
+    "dayNumber": 9,
     "date": "2026-12-24",
     "title": "Cygnet dag 1",
     "region": "Cygnet",
@@ -166,7 +166,7 @@
     ]
   },
   {
-    "dayNumber": 13,
+    "dayNumber": 10,
     "date": "2026-12-25",
     "title": "Cygnet dag 2",
     "region": "Cygnet",
@@ -182,7 +182,7 @@
     ]
   },
   {
-    "dayNumber": 14,
+    "dayNumber": 11,
     "date": "2026-12-26",
     "title": "Cygnet dag 3",
     "region": "Cygnet",
@@ -194,7 +194,7 @@
     "images": []
   },
   {
-    "dayNumber": 15,
+    "dayNumber": 12,
     "date": "2026-12-27",
     "title": "Cygnet dag 4",
     "region": "Cygnet",
@@ -208,7 +208,7 @@
     "images": []
   },
   {
-    "dayNumber": 16,
+    "dayNumber": 13,
     "date": "2026-12-28",
     "title": "Cygnet dag 5",
     "region": "Cygnet",
@@ -224,7 +224,7 @@
     ]
   },
   {
-    "dayNumber": 17,
+    "dayNumber": 14,
     "date": "2026-12-29",
     "title": "Vertrekdag",
     "region": "Tasmanië",
@@ -236,7 +236,7 @@
     "images": []
   },
   {
-    "dayNumber": 18,
+    "dayNumber": 14,
     "date": "2026-12-29",
     "title": "Tussenstop",
     "region": "Tussenstop",
@@ -250,7 +250,7 @@
     "images": []
   },
   {
-    "dayNumber": 19,
+    "dayNumber": 14,
     "date": "2026-12-29",
     "title": "Tussenstop",
     "region": "Tussenstop",
@@ -266,7 +266,7 @@
     ]
   },
   {
-    "dayNumber": 20,
+    "dayNumber": 14,
     "date": "2026-12-29",
     "title": "Tussenstop",
     "region": "Tussenstop",
@@ -280,7 +280,7 @@
     "images": []
   },
   {
-    "dayNumber": 21,
+    "dayNumber": 15,
     "date": "2026-12-30",
     "title": "Aankomst Airbnb 3",
     "region": "Tasmanië",
@@ -294,7 +294,7 @@
     ]
   },
   {
-    "dayNumber": 22,
+    "dayNumber": 16,
     "date": "2026-12-31",
     "title": "Northwest dag 1",
     "region": "Northwest",
@@ -308,7 +308,7 @@
     "images": []
   },
   {
-    "dayNumber": 23,
+    "dayNumber": 17,
     "date": "2026-12-01",
     "title": "Northwest dag 2",
     "region": "Northwest",
@@ -322,7 +322,7 @@
     "images": []
   },
   {
-    "dayNumber": 24,
+    "dayNumber": 18,
     "date": "2026-01-02",
     "title": "Northwest dag 3",
     "region": "Northwest",
@@ -336,7 +336,7 @@
     "images": []
   },
   {
-    "dayNumber": 25,
+    "dayNumber": 19,
     "date": "2026-01-03",
     "title": "Northwest dag 4",
     "region": "Northwest",
@@ -350,7 +350,7 @@
     "images": []
   },
   {
-    "dayNumber": 26,
+    "dayNumber": 20,
     "date": "2026-01-04",
     "title": "Vertrekdag",
     "region": "Tasmanië",
@@ -362,7 +362,7 @@
     "images": []
   },
   {
-    "dayNumber": 27,
+    "dayNumber": 21,
     "date": "2026-01-05",
     "title": "Aankomst",
     "region": "Nederland",
