@@ -52,144 +52,146 @@ const days = itineraryData;
   </main>
 </Layout>
 
-<script>
-  // Simple Lightbox Logic
-  const lightbox = document.getElementById('planning-lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  const closeBtn = document.querySelector('.lightbox .close-btn');
-  const prevBtn = document.querySelector('.lightbox .prev-btn');
-  const nextBtn = document.querySelector('.lightbox .next-btn');
-  
-  let currentImageIndex = 0;
-  let galleryImages = [];
-
-  function updateGalleryImages() {
-    // Collect all lightbox triggers currently on the page
-    galleryImages = Array.from(document.querySelectorAll('.lightbox-trigger'));
-  }
-
-  function showImage(index) {
-    if (!lightboxImg || galleryImages.length === 0) return;
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Simple Lightbox Logic
+    const lightbox = document.getElementById('planning-lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.querySelector('.lightbox .close-btn');
+    const prevBtn = document.querySelector('.lightbox .prev-btn');
+    const nextBtn = document.querySelector('.lightbox .next-btn');
     
-    // Wrap around logic
-    if (index < 0) index = galleryImages.length - 1;
-    if (index >= galleryImages.length) index = 0;
-    
-    currentImageIndex = index;
-    const img = galleryImages[currentImageIndex];
-    lightboxImg.src = img.src;
-    lightboxImg.alt = img.alt || '';
-  }
+    let currentImageIndex = 0;
+    let galleryImages = [];
 
-  if (lightbox && lightboxImg && closeBtn && prevBtn && nextBtn) {
-    // Initial collection
-    updateGalleryImages();
-
-    // Event delegation for opening lightbox
-    document.addEventListener('click', (e) => {
-      const target = e.target;
-      if (target.classList.contains('lightbox-trigger')) {
-        updateGalleryImages(); // Refresh list in case of dynamic content (though here it's static)
-        currentImageIndex = galleryImages.indexOf(target);
-        lightbox.style.display = "flex";
-        showImage(currentImageIndex);
-      }
-    });
-
-    closeBtn.addEventListener('click', () => {
-      lightbox.style.display = "none";
-    });
-
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        lightbox.style.display = "none";
-      }
-    });
-
-    // Navigation Buttons
-    prevBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      showImage(currentImageIndex - 1);
-    });
-
-    nextBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      showImage(currentImageIndex + 1);
-    });
-
-    // Keyboard Navigation
-    document.addEventListener('keydown', (e) => {
-      if (lightbox.style.display === 'flex') {
-        if (e.key === 'ArrowLeft') showImage(currentImageIndex - 1);
-        if (e.key === 'ArrowRight') showImage(currentImageIndex + 1);
-        if (e.key === 'Escape') lightbox.style.display = 'none';
-      }
-    });
-  }
-
-  // Scroll Spy & Smooth Scroll
-  const tocLinks = document.querySelectorAll('.toc-link');
-  const dayElements = document.querySelectorAll('[id^="day-"]');
-
-  // Smooth scroll on sidebar click
-  tocLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const targetId = link.getAttribute('href').substring(1);
-      const targetElement = document.getElementById(targetId);
-      
-      if (targetElement) {
-        const headerOffset = 100; // Offset for sticky header
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      }
-    });
-  });
-
-  // Scroll spy to highlight active item
-  function updateActiveLink() {
-    const scrollPos = window.scrollY + 150; // Offset for header
-
-    let currentDay = null;
-
-    dayElements.forEach(day => {
-      const dayTop = day.offsetTop;
-      const dayBottom = dayTop + day.offsetHeight;
-
-      if (scrollPos >= dayTop && scrollPos < dayBottom) {
-        currentDay = day.id;
-      }
-    });
-
-    // Update active class
-    tocLinks.forEach(link => {
-      const href = link.getAttribute('href').substring(1);
-      if (href === currentDay) {
-        link.classList.add('active');
-      } else {
-        link.classList.remove('active');
-      }
-    });
-  }
-
-  // Run on scroll with throttle
-  let scrollTimeout;
-  window.addEventListener('scroll', () => {
-    if (scrollTimeout) {
-      window.cancelAnimationFrame(scrollTimeout);
+    function updateGalleryImages() {
+      // Collect all lightbox triggers currently on the page
+      galleryImages = Array.from(document.querySelectorAll('.lightbox-trigger'));
     }
-    scrollTimeout = window.requestAnimationFrame(() => {
-      updateActiveLink();
-    });
-  });
 
-  // Initial check
-  updateActiveLink();
+    function showImage(index) {
+      if (!lightboxImg || galleryImages.length === 0) return;
+      
+      // Wrap around logic
+      if (index < 0) index = galleryImages.length - 1;
+      if (index >= galleryImages.length) index = 0;
+      
+      currentImageIndex = index;
+      const img = galleryImages[currentImageIndex];
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt || '';
+    }
+
+    if (lightbox && lightboxImg && closeBtn && prevBtn && nextBtn) {
+      // Initial collection
+      updateGalleryImages();
+
+      // Event delegation for opening lightbox
+      document.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target.classList.contains('lightbox-trigger')) {
+          updateGalleryImages();
+          currentImageIndex = galleryImages.indexOf(target);
+          lightbox.style.display = "flex";
+          showImage(currentImageIndex);
+        }
+      });
+
+      closeBtn.addEventListener('click', () => {
+        lightbox.style.display = "none";
+      });
+
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          lightbox.style.display = "none";
+        }
+      });
+
+      // Navigation Buttons
+      prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        showImage(currentImageIndex - 1);
+      });
+
+      nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        showImage(currentImageIndex + 1);
+      });
+
+      // Keyboard Navigation
+      document.addEventListener('keydown', (e) => {
+        if (lightbox.style.display === 'flex') {
+          if (e.key === 'ArrowLeft') showImage(currentImageIndex - 1);
+          if (e.key === 'ArrowRight') showImage(currentImageIndex + 1);
+          if (e.key === 'Escape') lightbox.style.display = 'none';
+        }
+      });
+    }
+
+    // Scroll Spy & Smooth Scroll
+    const tocLinks = document.querySelectorAll('.toc-link');
+    const dayElements = document.querySelectorAll('[id^="day-"]');
+
+    // Smooth scroll on sidebar click
+    tocLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          const headerOffset = 100; // Offset for sticky header
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Scroll spy to highlight active item
+    function updateActiveLink() {
+      const scrollPos = window.scrollY + 150; // Offset for header
+
+      let currentDay = null;
+
+      dayElements.forEach(day => {
+        const dayTop = day.offsetTop;
+        const dayBottom = dayTop + day.offsetHeight;
+
+        if (scrollPos >= dayTop && scrollPos < dayBottom) {
+          currentDay = day.id;
+        }
+      });
+
+      // Update active class
+      tocLinks.forEach(link => {
+        const href = link.getAttribute('href').substring(1);
+        if (href === currentDay) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+
+    // Run on scroll with throttle
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      if (scrollTimeout) {
+        window.cancelAnimationFrame(scrollTimeout);
+      }
+      scrollTimeout = window.requestAnimationFrame(() => {
+        updateActiveLink();
+      });
+    });
+
+    // Initial check
+    updateActiveLink();
+  });
 </script>
 
 <style>
