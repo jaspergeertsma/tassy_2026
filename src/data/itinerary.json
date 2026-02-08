@@ -332,25 +332,6 @@
     ]
   },
   {
-    "dayNumber": 14,
-    "date": "2026-12-29",
-    "title": "Tussenstop",
-    "region": "Tussenstop",
-    "locations": [
-      "Tussenstop"
-    ],
-    "activities": [
-      {
-        "name": "Stingray beach",
-        "url": ""
-      }
-    ],
-    "notes": "Tussenstopje na 380 kilometer op Stingray beach 🐟",
-    "images": [
-      "/tassy_2026/images/stingray.webp"
-    ]
-  },
-  {
     "dayNumber": 15,
     "date": "2026-12-30",
     "title": "Aankomst Airbnb 3",
