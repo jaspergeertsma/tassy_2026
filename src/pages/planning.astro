@@ -45,7 +45,9 @@ const days = itineraryData;
     <!-- Lightbox Modal -->
     <div id="planning-lightbox" class="lightbox">
         <span class="close-btn">&times;</span>
+        <button class="nav-btn prev-btn" aria-label="Previous image">&#10094;</button>
         <img class="lightbox-content" id="lightbox-img" />
+        <button class="nav-btn next-btn" aria-label="Next image">&#10095;</button>
     </div>
   </main>
 </Layout>
@@ -55,14 +57,42 @@ const days = itineraryData;
   const lightbox = document.getElementById('planning-lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
   const closeBtn = document.querySelector('.lightbox .close-btn');
+  const prevBtn = document.querySelector('.lightbox .prev-btn');
+  const nextBtn = document.querySelector('.lightbox .next-btn');
+  
+  let currentImageIndex = 0;
+  let galleryImages = [];
 
-  if (lightbox && lightboxImg && closeBtn) {
-    // Event delegation for dynamically added content if any, or just static list
+  function updateGalleryImages() {
+    // Collect all lightbox triggers currently on the page
+    galleryImages = Array.from(document.querySelectorAll('.lightbox-trigger'));
+  }
+
+  function showImage(index) {
+    if (!lightboxImg || galleryImages.length === 0) return;
+    
+    // Wrap around logic
+    if (index < 0) index = galleryImages.length - 1;
+    if (index >= galleryImages.length) index = 0;
+    
+    currentImageIndex = index;
+    const img = galleryImages[currentImageIndex];
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt || '';
+  }
+
+  if (lightbox && lightboxImg && closeBtn && prevBtn && nextBtn) {
+    // Initial collection
+    updateGalleryImages();
+
+    // Event delegation for opening lightbox
     document.addEventListener('click', (e) => {
       const target = e.target;
       if (target.classList.contains('lightbox-trigger')) {
+        updateGalleryImages(); // Refresh list in case of dynamic content (though here it's static)
+        currentImageIndex = galleryImages.indexOf(target);
         lightbox.style.display = "flex";
-        lightboxImg.src = target.src;
+        showImage(currentImageIndex);
       }
     });
 
@@ -73,6 +103,26 @@ const days = itineraryData;
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) {
         lightbox.style.display = "none";
+      }
+    });
+
+    // Navigation Buttons
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showImage(currentImageIndex - 1);
+    });
+
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showImage(currentImageIndex + 1);
+    });
+
+    // Keyboard Navigation
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.style.display === 'flex') {
+        if (e.key === 'ArrowLeft') showImage(currentImageIndex - 1);
+        if (e.key === 'ArrowRight') showImage(currentImageIndex + 1);
+        if (e.key === 'Escape') lightbox.style.display = 'none';
       }
     });
   }
@@ -288,5 +338,40 @@ const days = itineraryData;
   
   .close-btn:hover {
     color: var(--color-accent-gold);
+  }
+
+  .nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    padding: 1rem;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+    user-select: none;
+    z-index: 2001;
+  }
+
+  .nav-btn:hover {
+    background: rgba(212, 160, 61, 0.5);
+    color: var(--color-accent-gold);
+  }
+
+  .prev-btn {
+    left: 20px;
+  }
+
+  .next-btn {
+    right: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .nav-btn {
+      padding: 0.5rem;
+      font-size: 1.5rem;
+    }
   }
 </style>
