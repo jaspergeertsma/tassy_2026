@@ -29,8 +29,10 @@ export async function getRoutedPath(waypoints: RouteCoordinate[]): Promise<Route
         const coords = waypoints.map(wp => `${wp.lng},${wp.lat}`).join(';');
 
         // Use public OSRM demo server
-        // For production, consider hosting your own OSRM instance
-        const url = `https://router.project-osrm.org/route/v1/driving/${coords}?overview=full&geometries=geojson`;
+        // Add steps=true ensures detailed instructions (implicitly forces better waypoint handling)
+        // continue_straight=true avoids U-turns at intermediate waypoints if possible (though for A-B-A it must turn around)
+        // annotations=true gives more data
+        const url = `https://router.project-osrm.org/route/v1/driving/${coords}?overview=full&geometries=geojson&steps=true&continue_straight=true`;
 
         const response = await fetch(url);
 

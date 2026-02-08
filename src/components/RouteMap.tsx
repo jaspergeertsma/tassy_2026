@@ -101,7 +101,9 @@ export default function RouteMap({ routes, geocodedLocations }: RouteMapProps) {
 
         // Get routed path along roads if we have at least 2 waypoints
         if (waypoints.length >= 2) {
+          console.log(`[DEBUG] Route #${routeIndex} (${route.type}):`, waypoints);
           const routedPath = await getRoutedPath(waypoints);
+          console.log(`[DEBUG] Result:`, routedPath ? `${(routedPath.distance / 1000).toFixed(1)}km` : 'null');
 
           const color = route.type === 'Hoofdroute' ? COLORS.hoofdroute : COLORS.subroute;
           const weight = route.type === 'Hoofdroute' ? 4 : 3;
@@ -141,6 +143,7 @@ export default function RouteMap({ routes, geocodedLocations }: RouteMapProps) {
               <div class="route-type">${route.type}</div>
               <div class="route-name">${routeName}</div>
               <div class="route-stats">
+                <span class="route-stat">📍 ${waypoints.length} stops</span>
                 <span class="route-stat">📏 ${distanceKm} km</span>
                 <span class="route-stat">⏱️ ${durationText}</span>
               </div>
