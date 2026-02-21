@@ -3,7 +3,9 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import { getPath } from '../utils';
+import { getLangFromUrl } from '../i18n/utils';
 
+const lang = getLangFromUrl(Astro.url);
 
 interface Props {
   title: string;
@@ -13,7 +15,7 @@ const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="nl">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Tasmanië Rondreis 2026 - Planning en Hoogtepunten" />

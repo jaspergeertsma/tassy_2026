@@ -1,50 +1,53 @@
----
 import Layout from '../layouts/Layout.astro';
-import { getPath } from '../utils';
+import { getLangFromUrl, useTranslations, useLocalizedPath } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const lp = useLocalizedPath(lang);
 
 const blocks = [
   {
-    title: "THE TRIP",
-    subtitle: "THE ROUTE",
-    desc: "A three-week expedition through the island's untamed heart.",
+    title: t('home.blocks.trip.title'),
+    subtitle: t('home.blocks.trip.subtitle'),
+    desc: t('home.blocks.trip.desc'),
     link: "/planning",
-    image: "https://images.unsplash.com/photo-1549608276-5786777e6587?q=80&w=2070&auto=format&fit=crop", 
+    image: "/tassy_2026/images/wineglass_bay.jpg", 
     color: "var(--color-accent-gold)",
-    cta: "VIEW ITINERARY"
+    cta: t('home.blocks.trip.cta')
   },
   {
-    title: "STAYS",
-    subtitle: "ACCOMMODATION",
-    desc: "From miner's cottages to cliffside cabins.",
+    title: t('home.blocks.stays.title'),
+    subtitle: t('home.blocks.stays.subtitle'),
+    desc: t('home.blocks.stays.desc'),
     link: "/stays",
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop", 
+    image: "/tassy_2026/images/treetops1.avif", 
     color: "var(--color-accent-blue)",
-    cta: "EXPLORE LODGINGS"
+    cta: t('home.blocks.stays.cta')
   },
   {
-    title: "FLIGHTS",
-    subtitle: "LOGISTICS",
-    desc: "32 hours. 17,000 km. The journey begins here.",
+    title: t('home.blocks.flights.title'),
+    subtitle: t('home.blocks.flights.subtitle'),
+    desc: t('home.blocks.flights.desc'),
     link: "/flights",
-    image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074&auto=format&fit=crop", 
+    image: "/tassy_2026/images/launceston-airport.jpg", 
     color: "var(--color-accent-rust)",
-    cta: "FLIGHT INFO"
+    cta: t('home.blocks.flights.cta')
   }
 ];
 ---
 
-<Layout title="Tasmanië 2026 | WILDERNESS RAILWAY">
+<Layout title={`Tasmanië 2026 | WILDERNESS RAILWAY`}>
   <main>
     <section class="hero-industrial">
       <div class="hero-content container">
         <h1 class="hero-title scroll-reveal">
-          <span class="line-1">JOURNEY WITH US</span>
-          <span class="line-2">THROUGH RUGGED</span>
-          <span class="line-3">TERRAIN &</span>
-          <span class="line-4">BREATHTAKING SCENERY</span>
+          <span class="line-1">{t('home.hero.title1')}</span>
+          <span class="line-2">{t('home.hero.title2')}</span>
+          <span class="line-3">{t('home.hero.title3')}</span>
+          <span class="line-4">{t('home.hero.title4')}</span>
         </h1>
         <div class="hero-cta scroll-reveal">
-           <a href={getPath('/planning')} class="btn btn-primary">START THE EXPEDITION</a>
+           <a href={lp('/planning')} class="btn btn-primary">{t('home.hero.cta')}</a>
         </div>
       </div>
       <div class="hero-grain"></div>
@@ -52,7 +55,7 @@ const blocks = [
 
     <section class="poster-grid container">
       {blocks.map(block => (
-        <a href={getPath(block.link)} class="poster-card scroll-reveal" style={`--card-accent: ${block.color}`}>
+        <a href={lp(block.link)} class="poster-card scroll-reveal" style={`--card-accent: ${block.color}`}>
           <div class="poster-header" style={`background-color: ${block.color}`}>
             <span class="poster-subtitle">{block.subtitle}</span>
             <h3 class="poster-title">{block.title}</h3>
@@ -69,8 +72,8 @@ const blocks = [
     </section>
 
     <section class="quote-block container text-center scroll-reveal">
-      <p class="quote-text">"FIND A WAY OR MAKE A WAY"</p>
-      <span class="quote-source">THE WEST COAST PIONEERS</span>
+      <p class="quote-text">{t('home.quote.text')}</p>
+      <span class="quote-source">{t('home.quote.source')}</span>
     </section>
   </main>
 </Layout>

@@ -1,19 +1,27 @@
 
 ---
-import { getPath } from '../utils';
+import { getLangFromUrl, useTranslations, useLocalizedPath, useLanguageSwitcher } from '../i18n/utils';
+import { languages } from '../i18n/ui';
+import type { ui } from '../i18n/ui';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const lp = useLocalizedPath(lang);
+const ls = useLanguageSwitcher(Astro.url);
 
 const links = [
-  { href: '/planning', label: 'De Reis' },
-  { href: '/route', label: 'Route' },
-  { href: '/stays', label: 'Overnachten' },
-  { href: '/flights', label: 'Vliegreis' },
-  { href: '/gallery', label: 'Foto\'s' },
+  { href: '/planning', label: t('nav.planning') },
+  { href: '/route', label: t('nav.route') },
+  { href: '/stays', label: t('nav.stays') },
+  { href: '/flights', label: t('nav.flights') },
+  { href: '/gallery', label: t('nav.gallery') },
 ];
+
 ---
 
 <nav class="sticky-nav">
   <div class="container nav-container">
-    <a href={getPath('/')} class="logo">
+    <a href={lp('/')} class="logo">
       <span class="logo-top">Wilderness</span>
       <span class="logo-main">Tassy Crew</span>
       <span class="logo-bottom">Est. 2026</span>
@@ -22,10 +30,23 @@ const links = [
     <div class="nav-links-wrapper">
       <ul class="nav-links">
         {links.map(link => (
-          <li><a href={getPath(link.href)} class="nav-item">{link.label}</a></li>
+          <li><a href={lp(link.href)} class="nav-item">{link.label}</a></li>
         ))}
       </ul>
-      <a href="https://docs.google.com/spreadsheets/d/1JMbU7-4rmi14r_PXe24v--G61rzUL1N5bgRe7xn1B5I/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm desktop-only">Excel</a>
+
+      <div class="nav-actions">
+        <div class="lang-switcher">
+          {Object.entries(languages).map(([code, label]) => (
+            <a 
+              href={ls(code as keyof typeof ui)} 
+              class={`lang-link ${lang === code ? 'active' : ''}`}
+            >
+              {code.toUpperCase()}
+            </a>
+          ))}
+        </div>
+        <a href="https://docs.google.com/spreadsheets/d/1JMbU7-4rmi14r_PXe24v--G61rzUL1N5bgRe7xn1B5I/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm desktop-only">{t('nav.excel')}</a>
+      </div>
     </div>
 
     <!-- Mobile Hamburger Button -->
@@ -41,12 +62,23 @@ const links = [
     <div class="mobile-menu-content">
       <ul class="mobile-nav-links">
         {links.map(link => (
-          <li><a href={getPath(link.href)} class="mobile-nav-item">{link.label}</a></li>
+          <li><a href={lp(link.href)} class="mobile-nav-item">{link.label}</a></li>
         ))}
         <li>
-          <a href="https://docs.google.com/spreadsheets/d/1JMbU7-4rmi14r_PXe24v--G61rzUL1N5bgRe7xn1B5I/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="mobile-nav-item">Excel</a>
+          <a href="https://docs.google.com/spreadsheets/d/1JMbU7-4rmi14r_PXe24v--G61rzUL1N5bgRe7xn1B5I/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="mobile-nav-item">{t('nav.excel')}</a>
         </li>
       </ul>
+      
+      <div class="mobile-lang-switcher">
+        {Object.entries(languages).map(([code, label]) => (
+          <a 
+            href={ls(code as keyof typeof ui)} 
+            class={`mobile-lang-link ${lang === code ? 'active' : ''}`}
+          >
+            {label}
+          </a>
+        ))}
+      </div>
     </div>
   </div>
 </nav>
@@ -140,6 +172,30 @@ const links = [
   @media (min-width: 768px) {
     .nav-links { display: flex; }
     .desktop-only { display: block; }
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .lang-switcher {
+    display: flex;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+
+  .lang-link {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .lang-link:hover, .lang-link.active {
+    color: var(--color-accent-gold);
+    font-weight: 700;
   }
 
   .nav-item {
@@ -279,6 +335,25 @@ const links = [
   .mobile-nav-item:hover {
     color: var(--color-accent-gold);
     transform: scale(1.1);
+  }
+
+  .mobile-lang-switcher {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .mobile-lang-link {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .mobile-lang-link.active {
+    color: var(--color-accent-gold);
+    border-bottom: 2px solid var(--color-accent-gold);
   }
 
   @media (min-width: 768px) {

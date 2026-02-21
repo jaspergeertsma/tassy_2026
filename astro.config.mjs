@@ -7,4 +7,11 @@ export default defineConfig({
     site: 'https://jaspergeertsma.github.io',
     base: '/tassy_2026',
     integrations: [react()],
+    i18n: {
+        defaultLocale: 'en',
+        locales: ['en', 'nl'],
+        routing: {
+            prefixDefaultLocale: false
+        }
+    }
 });

@@ -1,28 +1,29 @@
-
----
 import Layout from '../layouts/Layout.astro';
 import TimelineDay from '../components/TimelineDay.astro';
 import itineraryData from '../data/itinerary.json';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 // Group by Region? Or just list
 const days = itineraryData;
 ---
 
-<Layout title="Reisplanning | Tasmanië 2026">
+<Layout title={`${t('planning.title')} | Tasmanië 2026`}>
   <main class="planning-page">
     <div class="page-header container">
-      <span class="eyebrow">Het Reisschema</span>
-      <h1>Jouw Reis door de Wildernis</h1>
+      <span class="eyebrow">{t('planning.eyebrow')}</span>
+      <h1>{t('planning.heading')}</h1>
       <p class="intro-text">
-        Een reis van drie weken dwars door Tasmanië. Van de oostkust met zijn witte stranden
-        tot de ruige bergen in het westen. Elke dag is een nieuw hoofdstuk.
+        {t('planning.intro')}
       </p>
     </div>
 
     <div class="layout-grid container">
       <aside class="sidebar">
         <nav class="toc-nav">
-          <h3 class="toc-title">Dagen</h3>
+          <h3 class="toc-title">{t('planning.sidebar.title')}</h3>
           <ul class="toc-list">
             {days.map(day => (
               <li>
