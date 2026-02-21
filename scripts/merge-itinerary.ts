@@ -69,7 +69,7 @@ function parseReisHTML(htmlContent: string): ItineraryDay[] {
         // Determine region from title
         let region = 'Tasmanië';
         if (title.toLowerCase().includes('campbell town')) region = 'Campbell town';
-        else if (title.toLowerCase().includes('cygnet')) region = 'Cygnet';
+        else if (title.toLowerCase().includes('taroona')) region = 'Taroona';
         else if (title.toLowerCase().includes('northwest')) region = 'Northwest';
         else if (title.toLowerCase().includes('tussenstop')) region = 'Tussenstop';
         else if (title.toLowerCase().includes('nederland')) region = 'Nederland';
