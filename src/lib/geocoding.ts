@@ -73,7 +73,7 @@ async function geocodeAddress(address: string): Promise<GeocodedLocation | null>
     try {
         const response = await fetch(url, {
             headers: {
-                'User-Agent': 'TassyCrew2026/1.0' // Nominatim requires User-Agent
+                'User-Agent': 'TassieCrew2026/1.0' // Nominatim requires User-Agent
             }
         });
 
