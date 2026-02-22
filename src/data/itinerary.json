@@ -203,6 +203,26 @@
     ]
   },
   {
+    "dayNumber": 10,
+    "date": "2026-12-25",
+    "title": "Taroona dag 2 - Kerst",
+    "region": "Taroona",
+    "locations": [
+      "Taroona"
+    ],
+    "activities": [
+      {
+        "name": "Tahune AirWalk",
+        "url": "https://tahuneadventures.com.au/tahune-airwalk/"
+      }
+    ],
+    "notes": "KERST. Voor de fanatiekelingen is er nog de mogelijkheid om een avontuurlijke bruggentoch bij Tahuna Airwalk Adventures te doen.🥾",
+    "images": [
+      "/tassy_2026/images/tahune-airwalks.jpg",
+      "/tassy_2026/images/Tahune-Airwalk-Supplied-Courtesy-of-Forestry-Tasmania-129788.jpg"
+    ]
+  },
+  {
     "dayNumber": 11,
     "date": "2026-12-26",
     "title": "Taroona dag 3",
@@ -223,23 +243,6 @@
     ]
   },
   {
-    "dayNumber": 10,
-    "date": "2026-12-25",
-    "title": "Taroona dag 2",
-    "region": "Taroona",
-    "locations": [
-      "Taroona"
-    ],
-    "activities": [
-      {
-        "name": "Bruny Island",
-        "url": ""
-      }
-    ],
-    "notes": "KERST! We rijden naar Kettering voor de ferry naar Bruny Island. Natuur, prachtige baaien, The Neck 🏝️",
-    "images": []
-  },
-  {
     "dayNumber": 12,
     "date": "2026-12-27",
     "title": "Taroona dag 4",
@@ -249,16 +252,14 @@
     ],
     "activities": [
       {
-        "name": "Tasman Peninsula Cruise",
-        "url": "https://www.viator.com/en-AU/tours/Port-Arthur/3-Hour-Tasman-Peninsula-Wilderness-Cruise-from-Port-Arthur/d32553-5500P8"
+        "name": "Tasman Peninsula route",
+        "url": ""
       }
     ],
     "notes": "Het prachtige Tasman Peninsula is een geweldig mooi schiereiland met mooi baaien, scherpe rotswanden en het historische Port Arthur 🚢. Goed bereikbaar vanuit Taroona via Hobart.",
     "images": [
       "/tassy_2026/images/eaglehawkneck.jpg",
-      "/tassy_2026/images/eaglehawkneck2.jpg",
-      "/tassy_2026/images/stephen-mabbs-_DlwNohdZ4c-unsplash.jpg",
-      "/tassy_2026/images/sean-robertson-pYDR8iOj0cE-unsplash.jpg"
+      "/tassy_2026/images/stephen-mabbs-_DlwNohdZ4c-unsplash.jpg"
     ]
   },
   {
@@ -271,14 +272,14 @@
     ],
     "activities": [
       {
-        "name": "Tahune AirWalk",
-        "url": "https://tahuneadventures.com.au/tahune-airwalk/"
+        "name": "Bruny Island",
+        "url": "https://www.pennicottjourneys.com.au/book"
       }
     ],
-    "notes": "BOXING HOLIDAY. Voor de fanatiekelingen is er nog de mogelijkheid om een avontuurlijke bruggentoch bij Tahuna Airwalk Adventures te doen.🥾",
+    "notes": "BOXING HOLIDAY. We rijden naar Kettering voor de ferry naar Bruny Island. Natuur, prachtige baaien, The Neck 🏝️ en een avontuurlijke Bruny Island Cruise 🚤",
     "images": [
-      "/tassy_2026/images/tahune-airwalks.jpg",
-      "/tassy_2026/images/Tahune-Airwalk-Supplied-Courtesy-of-Forestry-Tasmania-129788.jpg"
+      "/tassy_2026/images/eaglehawkneck2.jpg",
+      "/tassy_2026/images/sean-robertson-pYDR8iOj0cE-unsplash.jpg"
     ]
   },
   {

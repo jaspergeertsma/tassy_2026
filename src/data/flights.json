@@ -24,11 +24,11 @@
       },
       {
         "from": "MEL",
-        "to": "DPO",
-        "departLocal": "15:30",
-        "arriveLocal": "16:40",
+        "to": "LST",
+        "departLocal": "15:35",
+        "arriveLocal": "16:45",
         "airline": "QantasLink",
-        "flightNo": "QF2057",
+        "flightNo": "JQ739",
         "duration": "1u 10m",
         "date": "2026-12-17"
       }
@@ -38,13 +38,13 @@
     "direction": "return",
     "segments": [
       {
-        "from": "DPO",
+        "from": "LST",
         "to": "MEL",
-        "departLocal": "17:05",
+        "departLocal": "17:00",
         "arriveLocal": "18:15",
         "airline": "QantasLink",
-        "flightNo": "QF2058",
-        "duration": "1u 10m",
+        "flightNo": "QF2076",
+        "duration": "1u 15m",
         "date": "2027-01-04"
       },
       {
